@@ -2,6 +2,9 @@
 Dersimin finali için hazırladığım projem geliştirme aşamasındadır.
 İleride çalışan sepet ve admin paneli de eklenecektir.
 
+## Site linki
+http://fef.ogu.edu.tr/webler/121620201034/bisikletler.php
+
 ## Örnek Ekran Görüntüleri
 ![](ornek/1.png)
 ![](ornek/2.png)
