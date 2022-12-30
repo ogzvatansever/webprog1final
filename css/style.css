@@ -108,3 +108,14 @@ body{
   .test2 {
     margin-top: 2rem;
   }
+
+  .filtreleme {
+    background-color: #ffffff;
+    width: 80%;
+    border-radius: 6px;
+    margin-left: 4rem;
+  }
+
+  .filtreleme p{
+    margin: -2px;
+  }
