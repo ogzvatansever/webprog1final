@@ -1,66 +1,60 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Dec 26, 2022 at 09:41 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `bikes`
---
+CREATE DATABASE IF NOT EXISTS `bikes` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bikes`;
 
--- --------------------------------------------------------
+CREATE TABLE `anasayfa` (
+  `carousel_sira` int(11) DEFAULT NULL,
+  `carousel_baslik` varchar(100) DEFAULT NULL,
+  `carousel_baslik_2` varchar(100) DEFAULT NULL,
+  `carousel_resim` varchar(100) DEFAULT NULL,
+  `carousel_buton` varchar(100) DEFAULT NULL,
+  `form_action` varchar(100) DEFAULT NULL,
+  `form_input_id` varchar(100) DEFAULT NULL,
+  `form_input_name` varchar(100) DEFAULT NULL,
+  `form_input_value` varchar(100) DEFAULT NULL,
+  `carousel_active` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Table structure for table `bisikletler`
---
+INSERT INTO `anasayfa` (`carousel_sira`, `carousel_baslik`, `carousel_baslik_2`, `carousel_resim`, `carousel_buton`, `form_action`, `form_input_id`, `form_input_name`, `form_input_value`, `carousel_active`) VALUES
+(2, 'Yılın En İyi', 'Yol Bisikletleri', 'bikes3.jpg', 'Şimdi İncele', 'bisikletler.php', 'tur', 'tur[]', 'ROAD', '1'),
+(1, 'Yılın En İyi', 'Dağ Bisikletleri', 'bikes2.jpg', 'Şimdi İncele', 'bisikletler.php', 'tur', 'tur[]', 'MTB', NULL);
 
 CREATE TABLE `bisikletler` (
   `id` int(11) NOT NULL,
   `bisiklet_marka` varchar(100) NOT NULL,
+  `bisiklet_marka_2` varchar(100) DEFAULT NULL,
   `bisiklet_model` varchar(100) NOT NULL,
+  `bisiklet_model_2` varchar(100) DEFAULT NULL,
   `bisiklet_fiyat` int(11) NOT NULL,
   `bisiklet_renk` varchar(100) NOT NULL,
+  `bisiklet_tur` varchar(100) DEFAULT NULL,
+  `bisiklet_tarz` varchar(100) DEFAULT NULL,
   `bisiklet_aciklama` varchar(255) DEFAULT NULL,
   `bisiklet_diger` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `bisikletler`
---
-
-INSERT INTO `bisikletler` (`id`, `bisiklet_marka`, `bisiklet_model`, `bisiklet_fiyat`, `bisiklet_renk`, `bisiklet_aciklama`, `bisiklet_diger`) VALUES
-(1, 'Specialized', 'S-Works Epic', 12000, 'SATIN CARBON / COLOR RUN BLUE MURANO PEARL / GLOSS CHROME FOIL LOGOS', NULL, NULL),
-(2, 'Specialized', 'Epic EVO Pro', 8900, 'Gloss Birch/Bronze Pearl/Pearl', NULL, NULL),
-(3, 'Specialized', 'Rockhopper 29', 650, 'SATIN OLIVE GREEN / BLACK', NULL, NULL),
-(4, 'Specialized', 'Rockhoppper Sport 29', 750, 'GLOSS BLAZE / ICE PAPAYA', NULL, NULL),
-(5, 'Specialized', 'Rockhopper Expert 29', 1400, 'GLOSS LAGOON BLUE / SATIN LIGHT SILVER', NULL, NULL),
-(6, 'Specialized', 'Stumpjumper Alloy', 2800, 'SATIN BLACK / SMOKE', NULL, NULL),
-(7, 'Specialized', 'Stumpjumper EVO Expert', 6300, 'SATIN CARBON / OLIVE GREEN / BLACK', NULL, NULL),
-(8, 'Specialized', 'Chisel', 1800, 'GLOSS MAROON / ICE PAPAYA', NULL, NULL),
-(9, 'Specialized', 'Chisel Comp', 2400, 'SATIN LIGHT SILVER / GLOSS SPECTRAFLAIR', NULL, NULL),
-(10, 'Specialized', 'Epic Hardtail', 2500, 'GLOSS LAGOON / CHAMELEON EYRIS', NULL, NULL),
-(11, 'Specialized', 'Epic Hardtail Expert', 4500, 'SATIN CARBON/SPECTRAFLAIR', NULL, NULL),
-(12, 'Specialized', 'Epic Hardtail Comp', 2900, 'SATIN CARBON/OIL CHAMELEON/FLAKE SILVER', NULL, NULL),
-(13, 'Specialized', 'Epic Hardtail Pro', 5800, 'GLOSS ABALONE/SATIN BLACK', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bisiklet_detay`
---
+INSERT INTO `bisikletler` (`id`, `bisiklet_marka`, `bisiklet_marka_2`, `bisiklet_model`, `bisiklet_model_2`, `bisiklet_fiyat`, `bisiklet_renk`, `bisiklet_tur`, `bisiklet_tarz`, `bisiklet_aciklama`, `bisiklet_diger`) VALUES
+(1, 'Specialized', 'S-Works', 'Epic', '', 12000, 'SATIN CARBON / COLOR RUN BLUE MURANO PEARL / GLOSS CHROME FOIL LOGOS', 'MTB', 'Cross Country', NULL, NULL),
+(2, 'Specialized', NULL, 'Epic EVO', 'Pro', 8900, 'Gloss Birch/Bronze Pearl/Pearl', 'MTB', 'Cross Country', NULL, NULL),
+(3, 'Specialized', NULL, 'Rockhopper', '', 650, 'SATIN OLIVE GREEN / BLACK', 'MTB', 'Cross Country', NULL, NULL),
+(4, 'Specialized', NULL, 'Rockhopper', 'Sport', 750, 'GLOSS BLAZE / ICE PAPAYA', 'MTB', 'Cross Country', NULL, NULL),
+(5, 'Specialized', NULL, 'Rockhopper', 'Expert', 1400, 'GLOSS LAGOON BLUE / SATIN LIGHT SILVER', 'MTB', 'Cross Country', NULL, NULL),
+(6, 'Specialized', NULL, 'Stumpjumper', 'Alloy', 2800, 'SATIN BLACK / SMOKE', 'MTB', 'Trail', NULL, NULL),
+(7, 'Specialized', NULL, 'Stumpjumper EVO', 'Expert', 6300, 'SATIN CARBON / OLIVE GREEN / BLACK', 'MTB', 'Trail', NULL, NULL),
+(8, 'Specialized', NULL, 'Chisel', '', 1800, 'GLOSS MAROON / ICE PAPAYA', 'MTB', 'Cross Country', NULL, NULL),
+(9, 'Specialized', NULL, 'Chisel', 'Comp', 2400, 'SATIN LIGHT SILVER / GLOSS SPECTRAFLAIR', 'MTB', 'Cross Country', NULL, NULL),
+(10, 'Specialized', NULL, 'Epic Hardtail', '', 2500, 'GLOSS LAGOON / CHAMELEON EYRIS', 'MTB', 'Cross Country', NULL, NULL),
+(11, 'Specialized', NULL, 'Epic Hardtail', 'Expert', 4500, 'SATIN CARBON/SPECTRAFLAIR', 'MTB', 'Cross Country', NULL, NULL),
+(12, 'Specialized', NULL, 'Epic Hardtail', 'Comp', 2900, 'SATIN CARBON/OIL CHAMELEON/FLAKE SILVER', 'MTB', 'Cross Country', NULL, NULL),
+(13, 'Specialized', NULL, 'Epic Hardtail', 'Pro', 5800, 'GLOSS ABALONE/SATIN BLACK', 'MTB', 'Cross Country', NULL, NULL);
 
 CREATE TABLE `bisiklet_detay` (
   `id` int(11) NOT NULL,
@@ -94,10 +88,6 @@ CREATE TABLE `bisiklet_detay` (
   `ic_lastik` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `bisiklet_detay`
---
-
 INSERT INTO `bisiklet_detay` (`id`, `bisiklet_id`, `kadro`, `sele_kelepcesi`, `aksesuarlar`, `arka_suspansiyon`, `masa`, `gidon_bogazi`, `gidon`, `elcik`, `sele`, `sele_borusu`, `on_fren`, `arka_fren`, `arka_aktarici`, `on_aktarici`, `vites_kollari`, `ruble`, `zincir`, `aynakol`, `aynakol_dislisi`, `orta_gobek`, `jantlar`, `on_gobek`, `arka_gobek`, `jant_teli`, `on_lastik`, `arka_lastik`, `ic_lastik`) VALUES
 (1, 1, 'S-Works FACT 12m Carbon, Progressive XC Race Geometry, Rider-First Engineered™, threaded BB, 12x148mm rear spacing, internal cable routing, 100mm of travel', 'Specialized Alloy 34.9, Titanium Bolt', NULL, 'RockShox-Specialized BRAIN, Rx XC Tune, 5 Position Platform Adjust, Rebound Adjust, Integraded Extension, 265x52.5mm', 'RockShox SID SL ULTIMATE BRAIN, Top-Adjust Brain damper, Debon Air, 15x110mm, 44mm offset, 100mm Travel', 'S-Works SL, alloy, titanium bolts, 6-degree rise', 'S-Works Carbon XC Mini Rise, 6-degree upsweep, 8-degree backsweep, 10mm rise, 760mm, 31.8mm', 'Specialized Trail Grips', 'Body Geometry S-Works Power, carbon fiber rails, carbon fiber base', 'RockShox Reverb AXS, 30.9, 1X remote, (SM:100mm, M: 125mm, L-XL: 150mm travel)', 'SRAM Level Ultimate, 2-piston caliper, hydraulic disc', 'SRAM Level Ultimate, 2-piston caliper, hydraulic disc', 'SRAM XX1 Eagle AXS', NULL, 'SRAM Eagle AXS Rocker Paddle', 'Sram XG-1299, 12-Speed, 10-52t', 'SRAM XX1 Eagle', 'Quarq XX1 Powermeter, DUB, 170/175mm, 34t', '34T', 'SRAM DUB, BSA 73mm, Threaded', 'Roval Control SL, Carbon offset design, 29mm internal width, 4mm hook width, Tubeless ready, 24h', 'Roval Control SL, DT Swiss Internals, Ceramic Bearings, 6-bolt, 15mm thru-axle, 110mm spacing, Torque caps, 24h straight pull t-head', 'Roval Control SL, DT Swiss Internals, Ceramic Bearings, 6-bolt, 15mm thru-axle, 110mm spacing, Torque caps, 24h straight pull t-head', 'DT Swiss Aerolite T-head', 'Specialized Fast Trak, Control Casing, T5 Compound, 29x2.35', 'RENEGADE CONTROL 2BR, 29x2.35, T5', 'Specialized Turbo Tube'),
 (2, 2, 'FACT 11m Full Carbon, Progressive XC Geometry, Rider-First Engineered™, threaded BB, 12x148mm rear spacing, internal cable routing, 110mm of travel', 'Specialized Alloy, 34.9mm', NULL, 'FOX FLOAT DPS Factory, Rx XC Tune, EVOL Air sleeve, Kashima Coat, 3-position adjustment w/ Open Mode Adjustment, 190x40mm', 'FOX FLOAT 34 Factory, Fit4 damper, Kashima Coating, 15x110mm, 44mm offset, 120mm of travel', 'Race Face Turbine R, 60mm, 35mm clamp', 'Roval Control Rise Carbon Handlebar, 760mm wide, 20mm rise, 35mm', 'Specialized Trail Grips', 'Body Geometry Power Expert, titanium rails', 'Fox Transfer Factory, 30.9, 1X remote, (S:125mm, M/L: 150mm, XL: 175mm)\r\n\r\n', 'SRAM G2 RSC, 4-piston caliper, hydraulic disc, 180mm rotor\r\n\r\n', 'SRAM G2 RSC, 4-piston caliper, hydraulic disc, 180mm rotor\r\n\r\n', 'SRAM X01 Eagle AXS\r\n\r\n', NULL, 'SRAM Eagle AXS Rocker Paddle\r\n\r\n', 'SRAM XG-1295 Eagle, 10-52t\r\n\r\n', 'SRAX X01 Eagle, 12-speed\r\n\r\n', 'SRAM X1 Carbon, DUB, S:170mm, M-XL: 175mm\r\n\r\n', '32T', 'SRAM DUB, BSA 73mm, Threaded\r\n\r\n', 'Roval Control, Carbon offset design, 29mm internal width, 4mm hook width, Tubeless ready, 28h', 'DT Swiss 350, 6-bolt, 15mm Thru-axle, 110mm spacing, 28h straight -pull', 'DT Swiss 350 straight-pull, 6-bolt, DT Swiss Ratchet, 12x148mm thru axle, XD freehub body, 28h straight-pull', 'DT Swiss Comp Race', 'Specialized Ground Control, GRID Casing, T7 Compound, 29x2.35', 'Specialized Ground Control, GRID Casing, T7 Compound, 29x2.35', 'Specialized Turbo Tube'),
@@ -113,48 +103,49 @@ INSERT INTO `bisiklet_detay` (`id`, `bisiklet_id`, `kadro`, `sele_kelepcesi`, `a
 (12, 12, 'Specialized FACT 11m, XC Geometry, Rider-First Engineered™, threaded BB, 12x148mm rear spacing, internal cable routing', 'Specialized Alloy, 34.9mm', NULL, NULL, 'RockShox Reba RL, Motion Control damper, Solo Air, 42mm offset, 15x110mm thru-axle, 100mm of travel', 'Specialized XC, 3D-forged alloy, 4-bolt, 6-degree rise', 'Specialized Alloy Minirise, 10mm rise, 750mm, 31.8mm clamp', 'Specialized Trail Grips', 'Body Geometry Power Sport, steel rails', 'Specialized Alloy, Single Bolt, 30.9mm', 'Shimano SLX M7100, 2-piston caliper, hydraulic disc', 'Shimano SLX M7100, 2-piston caliper, hydraulic disc', 'Shimano SLX M7100, SGS, 12-speed', NULL, 'Shimano SLX, M7100, 12spd', NULL, 'Shimano SLX, M7100, 12-speed', 'Shimano SLX 7100, Hollowtech 2, 32T Chainring', NULL, NULL, 'Specialized Alloy, Tubeless Ready, 25mm internal width, 28h', 'Shimano MT400-B, Centerlock 28h, 15x110 Boost', 'Shimano MT510-B, Centerlock 28h, 12x148 Boost, Microspline', 'DT Swiss Industry', NULL, NULL, 'Presta, 60mm valve'),
 (13, 13, 'Specialized FACT 11m, Progressive XC Geometry, Rider-First Engineered™, threaded BB, 12x148mm rear spacing, internal cable routing', 'Specialized Alloy, 34.9mm, Titanium bolt', NULL, NULL, 'RockShox SID SL BRAIN, Top-Adjust Brain damper, Debon Air, 15x110mm, 44mm offset, 100mm Travel', 'Specialized XC, 3D-forged alloy, 4-bolt, 6-degree rise', 'S-Works Carbon XC Mini Rise, 6-degree upsweep, 8-degree backsweep, 10mm rise, 760mm, 31.8mm', 'Specialized Trail Grips', 'Body Geometry Power Expert, titanium rails', 'S-Works FACT carbon, 10mm offset, 30.9mm', 'SRAM Level TLM, 2-piston caliper, hydraulic disc', 'SRAM Level TLM, 2-piston caliper, hydraulic disc', 'SRAM X01 Eagle AXS', NULL, 'SRAM AXS Eagle Controller', 'SRAM XG-1295 Eagle, 12-speed, 10-50t', 'SRAX X01 Eagle, 12-speed', 'SRAM X1 carbon Eagle, Boost™ 148, DUB, 32T, SM: 170mm, M-XL 175mm', NULL, 'SRAM DUB, BSA 73mm, Threaded', 'Roval Control Carbon, 25mm internal width, Zero bead hook, Tubeless ready, 28h', 'DT Swiss 350, 15x110mm spacing, Torque caps, 6-bolt, 28h', 'DT Swiss 350, Star Ratchet, SRAM XD driver body, 12mm thru-axle, 148mm spacing, 28h', 'DT Swiss Competition Race', 'Fast Trak, Control casing, GRIPTON® compound, 60 TPI, 2Bliss Ready, 29x2.3\"', 'Fast Trak, Control casing, GRIPTON® compound, 60 TPI, 2Bliss Ready, 29x2.3\"', 'Presta, 60mm valve');
 
---
--- Indexes for dumped tables
---
+CREATE TABLE `kullaniciyorumlari` (
+  `id` int(11) NOT NULL,
+  `bisiklet_id` int(11) NOT NULL,
+  `isim` varchar(100) DEFAULT NULL,
+  `eposta` varchar(100) DEFAULT NULL,
+  `puan` int(11) DEFAULT NULL,
+  `yorum_baslik` varchar(100) DEFAULT NULL,
+  `yorum` text DEFAULT NULL,
+  `tarih` date DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for table `bisikletler`
---
+INSERT INTO `kullaniciyorumlari` (`id`, `bisiklet_id`, `isim`, `eposta`, `puan`, `yorum_baslik`, `yorum`, `tarih`) VALUES
+(11, 1, 'Oğuz', 'ogzvatansever@gmail.com', 5, 'Mükemmel', 'Alınabilecek en iyi bisikletlerden biri. Üzerindeki parçaların kalitesini kullanırken hissediyorsunuz. Ücreti yüksek olmasına rağmen Dünya XC kupasında kullanılan bir bisiklet olduğunu da unutmamak lazım.', '2022-12-31'),
+(15, 1, 'Ahmet', 'ahmet@eposta.com', 4, 'Lorem ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod elit quis lacus egestas, a scelerisque enim dapibus. Donec tincidunt nibh nec sem condimentum, vitae.', '2022-12-31');
+
+
 ALTER TABLE `bisikletler`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `bisiklet_detay`
---
 ALTER TABLE `bisiklet_detay`
   ADD PRIMARY KEY (`id`),
   ADD KEY `bisiklet_id` (`bisiklet_id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
+ALTER TABLE `kullaniciyorumlari`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kullaniciyorumlari_FK` (`bisiklet_id`);
 
---
--- AUTO_INCREMENT for table `bisikletler`
---
+
 ALTER TABLE `bisikletler`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
---
--- AUTO_INCREMENT for table `bisiklet_detay`
---
 ALTER TABLE `bisiklet_detay`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
---
--- Constraints for dumped tables
---
+ALTER TABLE `kullaniciyorumlari`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
---
--- Constraints for table `bisiklet_detay`
---
+
 ALTER TABLE `bisiklet_detay`
   ADD CONSTRAINT `bisiklet_detay_ibfk_1` FOREIGN KEY (`bisiklet_id`) REFERENCES `bisikletler` (`id`);
+
+ALTER TABLE `kullaniciyorumlari`
+  ADD CONSTRAINT `kullaniciyorumlari_FK` FOREIGN KEY (`bisiklet_id`) REFERENCES `bisikletler` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
