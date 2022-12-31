@@ -267,7 +267,6 @@ include('header.php');
                                 </script>
                                 <div class="d-flex justify-content-between align-items-center">
                                 <p class="card-text mt-3"><?php echo "$yorum[6]"; ?></p>
-                                <small class="text-muted mt-3"><?php echo "$yorum[7]"; ?></small>
                                 </div>
                             </div>
                             </div>
