@@ -12,7 +12,7 @@ if (isset($_POST['tur'])) {
   $sqlQuery .= " AND bisiklet_tur IN ('".$turFiltre."')";
 }
 else {
-echo "404";
+  include('404.php');
   die();
 }
 

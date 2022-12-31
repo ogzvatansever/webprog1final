@@ -36,6 +36,10 @@ include('header.php');
     $renkget = $_GET['renk'];
     $boyget = $_GET['boy'];
     $test = mysqli_query($conn,"select * from bisikletler where id='$testid'");
+    if (mysqli_num_rows($test) != 1) {
+        include("404.php");
+        die();
+    }
     $test1 = mysqli_fetch_array($test);
     $bisikletdetay = mysqli_fetch_array(mysqli_query($conn,"select * from bisiklet_detay where id='$testid'"))
     ?>
@@ -55,7 +59,7 @@ include('header.php');
             <!--</div>-->
             <div class="col">
                 <div class="container test2">
-                    <form action="#" method="get">
+                    <form action="#" method="get" onsubmit="javascript:alert('Sepet özelliği ikinci dönem ekleneceği için şuanlık bir iş yapmıyor ama sepete gidecek verileri adres çubuğuna bakarak görebilirsiniz.');">
                         <input type="hidden" name="id" value="<?php echo "$test1[0]"; ?>">
                     <h5> <?php if ($test1[2] == NULL) echo "$test1[1] $test1[3] $test1[4]"; else echo "$test1[2] $test1[3] $test1[4]"; ?></h5>
                     <h6 class="text-muted"><?php $test3 = number_format($test1[5]); echo "$test3"; ?>$</h6>
@@ -242,14 +246,15 @@ include('header.php');
                         <div class="col">
                             <div class="card shadow">
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo "$yorum[5]"; ?></h5>
-                                <h6 class="card-subtitles text-muted"><?php echo "$yorum[2]"; ?></h6>
 
                                 <span name="1" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
                                 <span name="2" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
                                 <span name="3" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
                                 <span name="4" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
                                 <span name="5" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
+                                <h5 class="card-title mt-2"><?php echo "$yorum[5]"; ?></h5>
+                                <h6 class="card-subtitles text-muted"><?php echo "$yorum[2]"; ?></h6>
+
                                 <script>
                                     $( document ).ready(function(){
                                         $('.yorum-<?php echo "$yorum[0]"; ?>').addClass('checked');
@@ -261,14 +266,13 @@ include('header.php');
                                     });
                                 </script>
                                 <div class="d-flex justify-content-between align-items-center">
-                                <p class="card-text"><?php echo "$yorum[6]"; ?></p>
-                                <small class="text-muted"><?php echo "$yorum[7]"; ?></small>
+                                <p class="card-text mt-3"><?php echo "$yorum[6]"; ?></p>
+                                <small class="text-muted mt-3"><?php echo "$yorum[7]"; ?></small>
                                 </div>
                             </div>
                             </div>
                         </div>
                         <?php
-                        //echo "$yorum[0] $yorum[1] $yorum[2] $yorum[3] $yorum[4] $yorum[5] $yorum[6] $yorum[7]";
                     }
                     ?>
                     </div>
