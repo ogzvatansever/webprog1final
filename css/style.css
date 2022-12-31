@@ -53,16 +53,9 @@ body{
     -webkit-overflow-scrolling: touch;
   }
 
-  #mytest{
-    height: 500px;
-  }
 
-  #test{
-    position: absolute;
-    top: -30%;
-    left: 0;
-    min-height: 300px;
-  }
+
+
 
   .parallax {
     background-image: url("../img/bikes.jpg");
@@ -119,3 +112,14 @@ body{
   .filtreleme p{
     margin: -2px;
   }
+
+.carousel-caption {
+    top: 50%;
+    left: 5%;
+    text-align: left;
+}
+
+.carousel-caption h3{
+    font-weight: 700;
+    font-size: 300%;
+}

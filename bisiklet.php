@@ -24,18 +24,9 @@ include("baglan.php");
 </head>
 <body>
 
-<header>
-  <div class="navbar navbar-light bg-light shadow-sm">
-    <div class="container">
-      <a href="bisikletler.php" class="navbar-brand d-flex align-items-center">
-        <strong>Vatansever Bisiklet</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <img src="img/shopping-cart--v1.png" width="32px">
-      </button>
-    </div>
-  </div>
-</header>
+<?php
+include('header.php');
+?>
 
     <?php
     $testid = $_GET['id'];
@@ -232,17 +223,18 @@ include("baglan.php");
             <div class="row mb-2">
                 <p>Henüz bir kullanıcı yorumu yok. İlk Yorumu yapan sen ol.</p>
             </div>
+            <div class="row mb-2">
+                <div class="col-2">
+                    <div class="row">
+                        <button class="btn btn-lg btn-block btn-dark">Yorum Yap</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-<footer class="text-muted py-5">
-<div class="container">
-    <p class="float-end mb-1">
-        <a href="#">Yukarı çık</a>
-    </p>
-    <p class="mb-1">Vatansever Bisiklet diye bir kuruluş yoktur.</p>
-    <p class="mb-0">Görseller ve içerikler temsilidir.</p>
-</div>
-</footer>
+<?php
+include('footer.php');
+?>
 
 <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>

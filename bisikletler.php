@@ -4,6 +4,18 @@ include('baglan.php');
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+$sqlQuery = "SELECT * FROM bisikletler WHERE id > 0";
+
+if (isset($_POST['tur'])) {
+  $turFiltre = implode("','", $_POST['tur']);
+  $sqlQuery .= " AND bisiklet_tur IN ('".$turFiltre."')";
+}
+else {
+echo "404";
+  die();
+}
+
 ?>
 <html lang="en">
   <head>
@@ -14,26 +26,48 @@ error_reporting(E_ALL);
     <title>Bisikletler</title>
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+    </style>
+    <?php
+    if (isset($_POST['tur'])) {
+    if ($_POST['tur'] == ['ROAD']) {
+      ?>
+      <style>
+        .parallax {
+          background-image: url("img/bikes4.jpg");
+          background-position: bottom;
+    }
+      </style>
+      <?php
+    }
+  }
+    ?>
 </head>
 <body>
     
-<header>
-  <div class="navbar navbar-light bg-light shadow-sm">
-    <div class="container">
-      <a href="bisikletler.php" class="navbar-brand d-flex align-items-center">
-        <strong>Vatansever Bisiklet</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <img src="img/shopping-cart--v1.png" width="32px">
-      </button>
-    </div>
-  </div>
-</header>
+<?php
+include('header.php');
+?>
 
 <main>
   <div class="parallax">
     <div class="parallaxtitle">
-      <p>Bisikletler</p>
+      <?php
+      if (isset($_POST['tur'])) {
+        if ($_POST['tur'] == ['MTB']) {
+          echo "<p>Dağ Bisikletleri</p>";
+        }
+        if ($_POST['tur'] == ['ROAD']) {
+          echo "<p>Yol Bisikletleri</p>";
+        }
+      }
+
+      ?>
     </div>
   </div>
   <div class="album py-5 bg-light">
@@ -42,14 +76,43 @@ error_reporting(E_ALL);
     <div class="col-2">
       <div class="container filtreleme border">
         <form action="#" method="POST">
+          <input type="hidden" id="tur"name="tur[]" value="<?php echo ''.implode($_POST['tur']).''; ?>">
         <div class="row">
-          <h5 class="mt-4">Modeller</h5>
+          <h5 class="mt-4">Sürüş Tarzı</h5>
           <?php
 
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model from bisikletler");
+          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_tarz from bisikletler where bisiklet_tur in ('".implode($_POST['tur'])."')");
           $modelsayi = mysqli_num_rows($modelsorgu);
 
-          $sqlQuery = "SELECT * FROM bisikletler WHERE id > 0";
+          if (isset($_POST['tarz'])) {
+            $tarzFiltre = implode("','", $_POST['tarz']);
+            $sqlQuery .= " AND bisiklet_tarz IN ('".$tarzFiltre."')";
+          }
+
+          while ($satir = mysqli_fetch_array($modelsorgu)) {
+            ?>
+            <div class="row">
+            <div class="col-1">
+            <input type="checkbox" id="tarz" name="tarz[]" value="<?php echo "$satir[0]"; ?>" <?php if (isset($_POST['tarz'])) if (in_array($satir[0],$_POST['tarz'])) echo'checked="checked"';  ?>>
+            </div>
+            <div class="col-10">
+            <p class="text-muted"><?php echo "$satir[0]"; ?></p>
+            </div>
+            </div>
+            <?php
+          }
+
+          ?>
+
+        </div>
+        <hr/>
+        <div class="row">
+          <h5 class="mt-2">Modeller</h5>
+          <?php
+
+          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model from bisikletler where bisiklet_tur in ('".implode($_POST['tur'])."')");
+          $modelsayi = mysqli_num_rows($modelsorgu);
+
           if (isset($_POST['model'])) {
             $modelFiltre = implode("','", $_POST['model']);
             $sqlQuery .= " AND bisiklet_model IN ('".$modelFiltre."')";
@@ -75,7 +138,7 @@ error_reporting(E_ALL);
           <h5 class="mt-2">Markalar</h5>
           <?php
 
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_marka from bisikletler");
+          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_marka from bisikletler where bisiklet_tur in ('".implode($_POST['tur'])."')");
           $modelsayi = mysqli_num_rows($modelsorgu);
 
           if (isset($_POST['marka'])) {
@@ -101,10 +164,10 @@ error_reporting(E_ALL);
         </div>
         <hr/>
         <div class="row">
-          <h5 class="mt-2">Seviyeler</h5>
+          <h5 class="mt-2">Model Seviyesi</h5>
           <?php
 
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model_2 from bisikletler");
+          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model_2 from bisikletler where bisiklet_tur in ('".implode($_POST['tur'])."')");
           $modelsayi = mysqli_num_rows($modelsorgu);
 
           if (isset($_POST['seviye'])) {
@@ -170,18 +233,28 @@ error_reporting(E_ALL);
 
 </main>
 
-<footer class="text-muted py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Yukarı çık</a>
-    </p>
-    <p class="mb-1">Vatansever Bisiklet diye bir kuruluş yoktur.</p>
-    <p class="mb-0">Görseller ve içerikler temsilidir.</p>
-  </div>
-</footer>
+<?php
+include('footer.php');
+?>
 
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
       
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        if (localStorage.getItem("my_app_name_here-quote-scroll") != null) {
+            $(window).scrollTop(localStorage.getItem("my_app_name_here-quote-scroll"));
+        }
+
+        $(window).on("scroll", function() {
+            localStorage.setItem("my_app_name_here-quote-scroll", $(window).scrollTop());
+        });
+
+      });
+    </script>
+
   </body>
 </html>
