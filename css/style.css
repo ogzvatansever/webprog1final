@@ -123,3 +123,12 @@ body{
     font-weight: 700;
     font-size: 300%;
 }
+
+.fa-star {
+  color: lightgray;
+  font-size: 26px;
+}
+
+.checked {
+  color: black;
+}

@@ -10,17 +10,20 @@ include("baglan.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
     <title>Bisikletler</title>
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-    </style>
-        
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+        </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -221,12 +224,116 @@ include('header.php');
                 </div>
             </div>
             <div class="row mb-2">
-                <p>Henüz bir kullanıcı yorumu yok. İlk Yorumu yapan sen ol.</p>
+                <?php
+                $yorumsorgu = mysqli_query($conn,"SELECT * FROM kullaniciyorumlari WHERE bisiklet_id = ".$test1[0]."");
+                $yorumsayi = mysqli_num_rows($yorumsorgu);
+
+                if ($yorumsayi < 1) {
+                    echo "<p>Henüz bir kullanıcı yorumu yok. İlk Yorumu yapan sen ol.</p>";
+                }
+
+                else {
+                    ?>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <?php
+
+                    while ($yorum = mysqli_fetch_array($yorumsorgu)) {
+                        ?>
+                        <div class="col">
+                            <div class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo "$yorum[5]"; ?></h5>
+                                <h6 class="card-subtitles text-muted"><?php echo "$yorum[2]"; ?></h6>
+
+                                <span name="1" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
+                                <span name="2" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
+                                <span name="3" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
+                                <span name="4" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
+                                <span name="5" class="fa fa-star yorum-<?php echo "$yorum[0]"; ?>"></span>
+                                <script>
+                                    $( document ).ready(function(){
+                                        $('.yorum-<?php echo "$yorum[0]"; ?>').addClass('checked');
+                                        var count = <?php echo "$yorum[4]"; ?>; 
+                                        puan = count;
+                                        for (var i=5; i>count-1; i--){        
+                                            $('.yorum-<?php echo "$yorum[0]"; ?>').eq(i).removeClass('checked');
+                                        }
+                                    });
+                                </script>
+                                <div class="d-flex justify-content-between align-items-center">
+                                <p class="card-text"><?php echo "$yorum[6]"; ?></p>
+                                <small class="text-muted"><?php echo "$yorum[7]"; ?></small>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <?php
+                        //echo "$yorum[0] $yorum[1] $yorum[2] $yorum[3] $yorum[4] $yorum[5] $yorum[6] $yorum[7]";
+                    }
+                    ?>
+                    </div>
+                    <?php
+                }
+                ?>
             </div>
             <div class="row mb-2">
                 <div class="col-2">
-                    <div class="row">
-                        <button class="btn btn-lg btn-block btn-dark">Yorum Yap</button>
+                    <div class="row mt-5">
+                        <button type="button" class="btn btn-lg btn-block btn-dark" data-bs-toggle="modal" data-bs-target="#yorumModal">Yorum Yap</button>
+                    </div>
+                    <div class="modal fade" id="yorumModal" tabindex="-1" aria-labelledby="yorumModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="yorumModalLabel">Yorum Yap</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="yorumModal" action="action.php" onsubmit="return validateForm()" method="GET">
+                                    <input type="hidden" id="yorumInputbisikletid" name="bisiklet_id" value="<?php echo "$test1[0]"; ?>">
+                                    <div class="form-floating mb-3">
+                                        <input type="form-control" class="form-control" id="yorumInputisim" name="isim" placeholder=" ">
+                                        <label for="yorumInputisim" class="form-label">Adınız: </label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="yorumInputeposta" name="eposta" aria-describedby="emailHelp" placeholder="ornek@eposta.com">
+                                        <label for="yorumInputeposta" class="form-label">E-Postanız: </label>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="mb-1">Puanınız: </label></br>
+                                        <span name="1" class="fa fa-star yorum-star"></span>
+                                        <span name="2" class="fa fa-star yorum-star"></span>
+                                        <span name="3" class="fa fa-star yorum-star"></span>
+                                        <span name="4" class="fa fa-star yorum-star"></span>
+                                        <span name="5" class="fa fa-star yorum-star"></span>
+                                        <input type="hidden" id="yorumInputpuan" name="puan" value="">
+                                        <script>
+                                            $('.yorum-star').on('click', function(){
+                                                $('.yorum-star').addClass('checked');
+                                                var count = $(this).attr('name'); 
+                                                puan = count;
+                                                for (var i=5; i>count-1; i--){        
+                                                    $('.yorum-star').eq(i).removeClass('checked');
+                                                }
+                                                document.getElementById('yorumInputpuan').value = puan;
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="form-control" class="form-control" id="yorumInputbaslik" name="baslik" placeholder=" ">
+                                        <label for="yorumInputbaslik" class="form-label">Yorum Başlığınız: </label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <textarea type="form-control" class="form-control" id="yorumInputyorum" name="yorum" rows="7" placeholder="Yorumunuzu buraya yazın. Bize ve başka müşterilerimize satın aldığınız ürünün neresini sevip neresini sevmediğinizi anlatın."></textarea>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                <button onclick="" type="submit" class="btn btn-primary">Yorumu Gönder</button>
+                            </div>
+                            </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -235,7 +342,46 @@ include('header.php');
 <?php
 include('footer.php');
 ?>
+<script>
+var isim = "";
+var eposta = "";
+var puan = "";
+var baslik = "";
+var yorum = "";
 
+function validateForm() {
+  isim = document.forms["yorumModal"]["yorumInputisim"].value;
+  if (isim == "") {
+    alert("Adınızı doldurmalısınız.");
+    return false;
+  }
+
+  eposta = document.forms["yorumModal"]["yorumInputeposta"].value;
+  if (eposta == "") {
+    alert("Epostanızı doldurmalısınız.");
+    return false;
+  }
+
+  //let puan = document.forms["yorumModal"]["yorumInputpuan"].value;
+  if (puan == "") {
+    alert("Puan vermelisiniz.");
+    return false;
+  }
+
+  baslik = document.forms["yorumModal"]["yorumInputbaslik"].value;
+  if (baslik == "") {
+    alert("Yorum başlığını yazmalısınız.");
+    return false;
+  }
+
+  yorum = document.forms["yorumModal"]["yorumInputyorum"].value;
+  if (yorum == "") {
+    alert("Yorum yapmalısınız.");
+    return false;
+  }
+}
+
+</script>
 <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
