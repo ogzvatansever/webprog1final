@@ -26,39 +26,44 @@ error_reporting(E_ALL);
     
 <?php
 include('header.php');
+
+$sql = "SELECT * FROM anasayfa ORDER BY carousel_sira ASC";
 ?>
 
 <main>
 <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" >
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <!--<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+        <?php
+        $carouselSorgu = mysqli_query($conn,$sql);
+        $testitem = range(0,mysqli_num_rows($carouselSorgu)-1);
+    
+        foreach ($testitem as $slayt) {
+            ?>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?php echo "$slayt";?>"  <?php if ($slayt == 0) echo "class='active' aria-current='true'"; ?> aria-label="Slide"></button>
+            <?php
+        }
+        ?>
     </div>
     <div class="carousel-inner">
-        <div id="" class="carousel-item active">
-            <img id="" class="" src="img/bikes2.jpg" width="100%">
+    <?php
+    $carouselSorgu = mysqli_query($conn,$sql);
+    //print_r(mysqli_fetch_array ($carouselSorgu));
+    while ($slayt = mysqli_fetch_array($carouselSorgu)) {
+        ?>
+        <div class="carousel-item <?php if ($slayt[0]== 1) echo "active"; ?>">
+            <img src="img/<?php echo "$slayt[3]"; ?>" width="100%">
             <div class="carousel-caption">
-                <h3>Yılın En İyi</h3>
-                <h3>Dağ Bisikletleri</h3>
-                <form action="bisikletler.php" method="post">
-                <input type="hidden" id="tur" name="tur[]" value="MTB">
-                <button type="submit" class="btn btn-lg btn-block btn-light" for="tur">Şimdi İncele</button>
+                <h3><?php echo "$slayt[1]"; ?></h3>
+                <h3><?php echo "$slayt[2]"; ?></h3>
+                <form action="<?php echo "$slayt[5]"; ?>" method="post">
+                <input type="hidden" id="<?php echo "$slayt[6]"; ?>" name="<?php echo "$slayt[7]"; ?>" value="<?php echo "$slayt[8]"; ?>">
+                <button type="submit" class="btn btn-lg btn-block btn-light" for="<?php echo "$slayt[6]"; ?>"><?php echo "$slayt[4]"; ?></button>
                 </form>
             </div>
         </div>
-        <div id="" class="carousel-item">
-            <img id="" class="" src="img/bikes3.jpg" width="100%">
-            <div class="carousel-caption">
-                <h3>Yılın En İyi</h3>
-                <h3>Yol Bisikletleri</h3>
-                <form action="bisikletler.php" method="post">
-                <input type="hidden" id="tur" name="tur[]" value="ROAD">
-                <button type="submit" class="btn btn-lg btn-block btn-light" for="tur">Şimdi İncele</button>
-                </form>
-            </div>
-        </div>
-    </div>
+        <?php
+    }
+    ?>
 </div>
 </main>
 
