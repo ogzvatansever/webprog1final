@@ -59,15 +59,15 @@ include('header.php');
             <!--</div>-->
             <div class="col">
                 <div class="container test2">
-                    <form action="#" method="get" onsubmit="javascript:alert('Sepet özelliği ikinci dönem ekleneceği için şuanlık bir iş yapmıyor ama sepete gidecek verileri adres çubuğuna bakarak görebilirsiniz.');">
+                    <form action="#" method="get" onsubmit="alert('Sepet özelliği ikinci dönem ekleneceği için şuanlık bir iş yapmıyor ama sepete gidecek verileri adres çubuğuna bakarak görebilirsiniz.'); ">
                         <input type="hidden" name="id" value="<?php echo "$test1[0]"; ?>">
                     <h5> <?php if ($test1[2] == NULL) echo "$test1[1] $test1[3] $test1[4]"; else echo "$test1[2] $test1[3] $test1[4]"; ?></h5>
                     <h6 class="text-muted"><?php $test3 = number_format($test1[5]); echo "$test3"; ?>$</h6>
                     <h6 style="margin-top: 2rem;">Renk</h6>
                     <div class="row text-center">
                         <div class="col-auto m-1">
-                            <input type="radio" class="btn-check" name="renk" id="renk-1" value="<?php echo "$test1[6]"; ?>" autocomplete="off" <?php if ($renkget == $test1[6]) echo "checked";?>>
-                            <label class="btn btn-sm btn-outline-dark" for="renk-1"><?php echo "$test1[6]"; ?></label>
+                            <input type="radio" class="btn-check" name="renk" id="renk" value="<?php echo "$test1[6]"; ?>" autocomplete="off" <?php if ($renkget == $test1[6]) echo "checked";?>>
+                            <label class="btn btn-sm btn-outline-dark" for="renk"><?php echo "$test1[6]"; ?></label>
                         </div>
                     </div>
                     <h6 style="margin-top: 2rem;">Kadro Boyu</h6>
