@@ -55,7 +55,7 @@ $sql = "SELECT * FROM anasayfa ORDER BY carousel_sira ASC";
             <div class="carousel-caption">
                 <h3><?php echo "$slayt[1]"; ?></h3>
                 <h3><?php echo "$slayt[2]"; ?></h3>
-                <form action="<?php echo "$slayt[5]"; ?>" method="post">
+                <form action="<?php echo "$slayt[5]"; ?>" method="get">
                 <input type="hidden" id="<?php echo "$slayt[6]"; ?>" name="<?php echo "$slayt[7]"; ?>" value="<?php echo "$slayt[8]"; ?>">
                 <button type="submit" class="btn btn-lg btn-block btn-light" for="<?php echo "$slayt[6]"; ?>"><?php echo "$slayt[4]"; ?></button>
                 </form>

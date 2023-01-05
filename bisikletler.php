@@ -7,8 +7,8 @@ error_reporting(E_ALL);
 
 $sqlQuery = "SELECT * FROM bisikletler WHERE id > 0";
 
-if (isset($_POST['tur'])) {
-  $turFiltre = implode("','", $_POST['tur']);
+if (isset($_GET['tur'])) {
+  $turFiltre = implode("','", $_GET['tur']);
   $sqlQuery .= " AND bisiklet_tur IN ('".$turFiltre."')";
 }
 else {
@@ -34,8 +34,8 @@ else {
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
     </style>
     <?php
-    if (isset($_POST['tur'])) {
-    if ($_POST['tur'] == ['ROAD']) {
+    if (isset($_GET['tur'])) {
+    if ($_GET['tur'] == ['ROAD']) {
       ?>
       <style>
         .parallax {
@@ -58,11 +58,11 @@ include('header.php');
   <div class="parallax">
     <div class="parallaxtitle">
       <?php
-      if (isset($_POST['tur'])) {
-        if ($_POST['tur'] == ['MTB']) {
+      if (isset($_GET['tur'])) {
+        if ($_GET['tur'] == ['MTB']) {
           echo "<p>Dağ Bisikletleri</p>";
         }
-        if ($_POST['tur'] == ['ROAD']) {
+        if ($_GET['tur'] == ['ROAD']) {
           echo "<p>Yol Bisikletleri</p>";
         }
       }
@@ -75,19 +75,14 @@ include('header.php');
     <div class="row">
     <div class="col-2">
       <div class="container filtreleme border">
-        <form action="#" method="POST">
-          <input type="hidden" id="tur"name="tur[]" value="<?php echo ''.implode($_POST['tur']).''; ?>">
+        <form id="sorgu" method="POST">
+          <input type="hidden" id="tur"name="tur[]" value="<?php echo ''.implode($_GET['tur']).''; ?>">
         <div class="row">
           <h5 class="mt-4">Sürüş Tarzı</h5>
           <?php
 
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_tarz from bisikletler where bisiklet_tur in ('".implode($_POST['tur'])."')");
+          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_tarz from bisikletler where bisiklet_tur in ('".implode($_GET['tur'])."')");
           $modelsayi = mysqli_num_rows($modelsorgu);
-
-          if (isset($_POST['tarz'])) {
-            $tarzFiltre = implode("','", $_POST['tarz']);
-            $sqlQuery .= " AND bisiklet_tarz IN ('".$tarzFiltre."')";
-          }
 
           while ($satir = mysqli_fetch_array($modelsorgu)) {
             ?>
@@ -110,13 +105,8 @@ include('header.php');
           <h5 class="mt-2">Modeller</h5>
           <?php
 
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model from bisikletler where bisiklet_tur in ('".implode($_POST['tur'])."')");
+          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model from bisikletler where bisiklet_tur in ('".implode($_GET['tur'])."')");
           $modelsayi = mysqli_num_rows($modelsorgu);
-
-          if (isset($_POST['model'])) {
-            $modelFiltre = implode("','", $_POST['model']);
-            $sqlQuery .= " AND bisiklet_model IN ('".$modelFiltre."')";
-          }
 
           while ($satir = mysqli_fetch_array($modelsorgu)) {
             ?>
@@ -138,13 +128,8 @@ include('header.php');
           <h5 class="mt-2">Markalar</h5>
           <?php
 
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_marka from bisikletler where bisiklet_tur in ('".implode($_POST['tur'])."')");
+          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_marka from bisikletler where bisiklet_tur in ('".implode($_GET['tur'])."')");
           $modelsayi = mysqli_num_rows($modelsorgu);
-
-          if (isset($_POST['marka'])) {
-            $markaFiltre = implode("','", $_POST['marka']);
-            $sqlQuery .= " AND bisiklet_marka IN ('".$markaFiltre."')";
-          }
 
           while ($satir = mysqli_fetch_array($modelsorgu)) {
             ?>
@@ -167,13 +152,8 @@ include('header.php');
           <h5 class="mt-2">Model Seviyesi</h5>
           <?php
 
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model_2 from bisikletler where bisiklet_tur in ('".implode($_POST['tur'])."')");
+          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model_2 from bisikletler where bisiklet_tur in ('".implode($_GET['tur'])."')");
           $modelsayi = mysqli_num_rows($modelsorgu);
-
-          if (isset($_POST['seviye'])) {
-            $seviyeFiltre = implode("','", $_POST['seviye']);
-            $sqlQuery .= " AND bisiklet_model_2 IN ('".$seviyeFiltre."')";
-          }
 
           while ($satir = mysqli_fetch_array($modelsorgu)) {
             ?>
@@ -199,32 +179,7 @@ include('header.php');
     </div>
     <div class="col-9">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-        <?php
-        $bisikletsorgu = mysqli_query($conn,$sqlQuery);
-        $bisikletsayi = mysqli_num_rows($bisikletsorgu);
-
-        while ($satir = mysqli_fetch_array($bisikletsorgu)) {
-          ?>
-          <div class="col">
-            <div class="card shadow">
-              <?php echo '<a href="bisiklet.php?id='.$satir[0].'">'; ?><img class="card-img-top p-2" src="img/<?php echo "$satir[0]";?>/1.webp" alt="<?php if ($satir[2] == NULL) echo "$satir[1] $satir[3]"; else echo "$satir[2] $satir[3]"; ?>" width="100%" height="auto"></a>
-              <div class="card-body">
-                <h5 class="card-title"><?php if ($satir[2] == NULL) echo "$satir[1] $satir[3] $satir[4]"; else echo "$satir[2] $satir[3] $satir[4]"; ?></h5>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group mt-2">
-                    <?php echo '<a href="bisiklet.php?id='.$satir[0].'">'; ?> <button type="button" class="btn btn-sm btn-outline-primary">İncele</button></a>
-                  </div>
-                  <small class="text-muted"><?php $test3 = number_format($satir[5]); echo "$test3"; ?>$</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        <?php
-        }  
-        ?>
-
+      <div id="sorgular" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       </div>
     </div>
   </div>
@@ -242,19 +197,7 @@ include('footer.php');
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script type="text/javascript">
-    $(document).ready(function () {
-
-        if (localStorage.getItem("my_app_name_here-quote-scroll") != null) {
-            $(window).scrollTop(localStorage.getItem("my_app_name_here-quote-scroll"));
-        }
-
-        $(window).on("scroll", function() {
-            localStorage.setItem("my_app_name_here-quote-scroll", $(window).scrollTop());
-        });
-
-      });
-    </script>
+    <script src="js/sorgu.js"></script>
 
   </body>
 </html>
