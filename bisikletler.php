@@ -172,14 +172,35 @@ include('header.php');
 
         </div>
         <div class="row mt-4">
-          <button type="submit" class="btn btn-block btn-dark" value="Submit">Filtrele</button>
+          <button id="filtrebuton" type="submit" class="btn btn-block btn-dark" value="Submit">Filtrele</button>
         </div>
         </form>
       </div>
     </div>
     <div class="col-9">
-
       <div id="sorgular" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <?php
+        foreach (range(0,5) as $value) {
+          ?>
+          <div class="col">
+            <div class="card shadow" aria-hidden="true">
+              <!--<img class="card-img-top p-2" src="img/1/1.webp" class="card-img-top" alt="...">-->
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="262px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="lightgray"/></svg>
+              <div class="card-body">
+                <h5 class="card-title placeholder-glow">
+                  <span class="placeholder col-6"></span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class="placeholder col-7"></span>
+                  <span class="placeholder col-4"></span> 
+                </p>
+                <a href="#" tabindex="-1" class="btn btn-sm btn-primary disabled placeholder col-2"></a>
+              </div>
+            </div>
+          </div>
+          <?php
+        }
+        ?>
       </div>
     </div>
   </div>

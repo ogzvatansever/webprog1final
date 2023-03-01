@@ -64,14 +64,16 @@ $sql = "SELECT * FROM anasayfa ORDER BY carousel_sira ASC";
         <?php
     }
     ?>
+    </div>
 </div>
+
 </main>
 
 <?php
 include('footer.php');
 ?>
 
-    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
       
-  </body>
+</body>
 </html>
