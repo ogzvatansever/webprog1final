@@ -34,7 +34,7 @@ include('header.php');
     <?php
     $testid = $_GET['id'];
     $renkget = $_GET['renk'];
-    $boyget = $_GET['boy'];
+    @$boyget = $_GET['boy'];
     $test = mysqli_query($conn,"select * from bisikletler where id='$testid'");
     if (mysqli_num_rows($test) != 1) {
         include("404.php");
