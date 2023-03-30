@@ -1,6 +1,7 @@
 <!doctype html>
 <?php
 include('baglan.php');
+include('functions.php');
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -80,96 +81,29 @@ include('header.php');
         <div class="row">
           <h5 class="mt-4">Sürüş Tarzı</h5>
           <?php
-
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_tarz from bisikletler where bisiklet_tur in ('".implode($_GET['tur'])."')");
-          $modelsayi = mysqli_num_rows($modelsorgu);
-
-          while ($satir = mysqli_fetch_array($modelsorgu)) {
-            ?>
-            <div class="row">
-            <div class="col-1">
-            <input type="checkbox" id="tarz" name="tarz[]" value="<?php echo "$satir[0]"; ?>" <?php if (isset($_POST['tarz'])) if (in_array($satir[0],$_POST['tarz'])) echo'checked="checked"';  ?>>
-            </div>
-            <div class="col-10">
-            <p class="text-muted"><?php echo "$satir[0]"; ?></p>
-            </div>
-            </div>
-            <?php
-          }
-
+          getFiltreDetay($conn,"bisiklet_tarz","tarz");
           ?>
-
         </div>
         <hr/>
         <div class="row">
           <h5 class="mt-2">Modeller</h5>
           <?php
-
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model from bisikletler where bisiklet_tur in ('".implode($_GET['tur'])."')");
-          $modelsayi = mysqli_num_rows($modelsorgu);
-
-          while ($satir = mysqli_fetch_array($modelsorgu)) {
-            ?>
-            <div class="row">
-            <div class="col-1">
-            <input type="checkbox" id="model" name="model[]" value="<?php echo "$satir[0]"; ?>" <?php if (isset($_POST['model'])) if (in_array($satir[0],$_POST['model'])) echo'checked="checked"';  ?>>
-            </div>
-            <div class="col-10">
-            <label class="text-muted"><?php echo "$satir[0]"; ?></label>
-            </div>
-            </div>
-            <?php
-          }
-          
+          getFiltreDetay($conn,"bisiklet_model","model");
           ?>
         </div>
         <hr/>
         <div class="row">
           <h5 class="mt-2">Markalar</h5>
           <?php
-
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_marka from bisikletler where bisiklet_tur in ('".implode($_GET['tur'])."')");
-          $modelsayi = mysqli_num_rows($modelsorgu);
-
-          while ($satir = mysqli_fetch_array($modelsorgu)) {
-            ?>
-            <div class="row">
-            <div class="col-1">
-            <input type="checkbox" id="marka" name="marka[]" value="<?php echo "$satir[0]"; ?>" <?php if (isset($_POST['marka'])) if (in_array($satir[0],$_POST['marka'])) echo'checked="checked"';  ?>>
-            </div>
-            <div class="col-10">
-            <p class="text-muted"><?php echo "$satir[0]"; ?></p>
-            </div>
-            </div>
-            <?php
-          }
-
+          getFiltreDetay($conn,"bisiklet_marka","marka");
           ?>
-
         </div>
         <hr/>
         <div class="row">
           <h5 class="mt-2">Model Seviyesi</h5>
           <?php
-
-          $modelsorgu = mysqli_query($conn,"select distinct bisiklet_model_2 from bisikletler where bisiklet_tur in ('".implode($_GET['tur'])."')");
-          $modelsayi = mysqli_num_rows($modelsorgu);
-
-          while ($satir = mysqli_fetch_array($modelsorgu)) {
-            ?>
-            <div class="row">
-            <div class="col-1">
-            <input type="checkbox" id="seviye" name="seviye[]" value="<?php echo "$satir[0]"; ?>" <?php if (isset($_POST['seviye'])) if (in_array($satir[0],$_POST['seviye'])) echo'checked="checked"';  ?>>
-            </div>
-            <div class="col-10">
-            <p class="text-muted"><?php if($satir[0] != "") echo "$satir[0]"; else echo "Base"; ?></p>
-            </div>
-            </div>
-            <?php
-          }
-
+          getFiltreDetay($conn,"bisiklet_model_2","seviye");
           ?>
-
         </div>
         <div class="row mt-4">
           <button id="filtrebuton" type="submit" class="btn btn-block btn-dark" value="Submit">Filtrele</button>
