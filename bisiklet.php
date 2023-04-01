@@ -22,7 +22,7 @@ include("baglan.php");
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <link rel="icon" href="favicon.ico">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -33,7 +33,7 @@ include('header.php');
 
     <?php
     $testid = $_GET['id'];
-    $renkget = $_GET['renk'];
+    @$renkget = $_GET['renk'];
     @$boyget = $_GET['boy'];
     $test = mysqli_query($conn,"select * from bisikletler where id='$testid'");
     if (mysqli_num_rows($test) != 1) {
@@ -43,7 +43,7 @@ include('header.php');
     $test1 = mysqli_fetch_array($test);
     $bisikletdetay = mysqli_fetch_array(mysqli_query($conn,"select * from bisiklet_detay where id='$testid'"))
     ?>
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 64px;">
         <div class="row">
             <!-- <div class="col-9"> -->
                 <div class="overflow-auto test123">
