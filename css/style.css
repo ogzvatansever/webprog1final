@@ -134,3 +134,7 @@ body{
 .checked {
   color: black;
 }
+
+.offcanvas-body::-webkit-scrollbar {
+  display: none;
+}

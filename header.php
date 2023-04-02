@@ -50,7 +50,7 @@
         <a href="#" type="button" class="link-dark position-relative ms-2 p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
         <i style="font-size: x-large;" class="bi bi-cart2"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        2
+        1
         </span>
         </a>
 
@@ -61,12 +61,13 @@
           </div>
           <hr>
           <div class="offcanvas-body">
+            
             <div class="row">
-            <div class="card mb-3" style="max-width: 100%;">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="img/1/1.webp" class="img-fluid rounded-start mt-2">
-                </div>
+              <div class="card mb-3" style="max-width: 100%;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="img/1/1.webp" class="img-fluid rounded-start mt-2">
+                  </div>
                   <div class="col-md-8">
                     <div class="card-body m-0 p-0">
                       <!--<h5 class="card-title">S-Works Epic</h5>-->
@@ -81,6 +82,20 @@
                   </div>
                 </div>
               </div>
+            </div>
+            
+          </div>
+          <div class="offcanvas-footer">
+            <div class="container mx-1">
+
+              <div class="row">
+                <div class="col me-2 mb-1">
+                  <div class="row">
+                    <button class="btn btn-dark btn-block">Satın Al</button>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
