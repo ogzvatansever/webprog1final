@@ -1,20 +1,3 @@
-<!--
-<header>
-  <div class="navbar fixed-top navbar-light bg-light shadow-sm">
-    <div class="container">
-      <a href="index.php" class="navbar-brand d-flex align-items-center">
-        <strong>Vatansever Bisiklet</strong>
-      </a>
-      <!-- Sepet kısmı ikinci dönem yapılacak o yüzden butonunu kapattım
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <img src="img/shopping-cart--v1.png" width="32px">
-      </button>
-      -->
-      <!--
-    </div>
-  </div>
-</header>
--->
 <header class="p-3 mb-5 border-bottom fixed-top bg-light">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -47,7 +30,7 @@
           </ul>
         </div>
         
-        <a href="#" type="button" class="link-dark position-relative ms-2 p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <a href="#" type="button" class="link-dark position-relative ms-2 p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" onclick="getSepet()">
         <i style="font-size: x-large;" class="bi bi-cart2"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
         1
@@ -60,17 +43,19 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <hr>
-          <div class="offcanvas-body">
-            
+          <div id="sepet-body" class="offcanvas-body">
+<!--
             <div class="row">
               <div class="card mb-3" style="max-width: 100%;">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="img/1/1.webp" class="img-fluid rounded-start mt-2">
+                    <a href="#">
+                      <img src="img/1/1.webp" class="img-fluid rounded-start mt-2">
+                    </a>
                   </div>
                   <div class="col-md-8">
                     <div class="card-body m-0 p-0">
-                      <p class="card-text m-0 mt-1 ms-2 p-0">S-Works Epic</p>
+                      <a href="#" class="card-text m-0 mt-1 ms-2 p-0 link-dark text-decoration-none">S-Works Epic</a>
                       <p class="card-text m-0 ms-2 p-0" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><small class="text-body-secondary">M - SATIN CARBON / COLOR RUN BLUE MURANO PEARL / GLOSS CHROME FOIL LOGOS</small></p>
                       <a href="#" class="link-danger"><p class="float-end mx-2"><i class="bi bi-x-square"></i></p></a>
                       <a href="#" class="link-warning"><p class="float-end mx-1"><i class="bi bi-dash-square"></i></p></a>
@@ -82,7 +67,7 @@
                 </div>
               </div>
             </div>
-            
+-->
           </div>
           <div class="offcanvas-footer">
             <div class="container mx-1">
@@ -105,3 +90,5 @@
       </div>
     </div>
   </header>
+
+  <script src="js/sepet.js"></script>
