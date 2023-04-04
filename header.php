@@ -70,7 +70,6 @@
                   </div>
                   <div class="col-md-8">
                     <div class="card-body m-0 p-0">
-                      <!--<h5 class="card-title">S-Works Epic</h5>-->
                       <p class="card-text m-0 mt-1 ms-2 p-0">S-Works Epic</p>
                       <p class="card-text m-0 ms-2 p-0" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><small class="text-body-secondary">M - SATIN CARBON / COLOR RUN BLUE MURANO PEARL / GLOSS CHROME FOIL LOGOS</small></p>
                       <a href="#" class="link-danger"><p class="float-end mx-2"><i class="bi bi-x-square"></i></p></a>
@@ -89,7 +88,11 @@
             <div class="container mx-1">
 
               <div class="row">
-                <div class="col me-2 mb-1">
+                <div class="col-3 ms-1">
+                  <h6 class="m-0" style="white-space: nowrap;">Ara Toplam: </h6>
+                  <p class="m-0 mb-1">12,000$</p>
+                </div>
+                <div class="col-8 mb-1" style="margin-inline-end: 5px; margin-inline-start: 20px;">
                   <div class="row">
                     <button class="btn btn-dark btn-block">Satın Al</button>
                   </div>
