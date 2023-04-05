@@ -75,7 +75,7 @@
               <div class="row">
                 <div class="col-3 ms-1">
                   <h6 class="m-0" style="white-space: nowrap;">Ara Toplam: </h6>
-                  <p id="sepet-toplam" class="m-0 mb-1">12,000$</p>
+                  <p id="sepet-toplam" class="m-0 mb-1">0$</p>
                 </div>
                 <div class="col-8 mb-1" style="margin-inline-end: 5px; margin-inline-start: 20px;">
                   <div class="row">

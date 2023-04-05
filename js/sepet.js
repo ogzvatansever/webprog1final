@@ -31,3 +31,13 @@ function getSepetMiktar() {
             document.getElementById("sepet-miktar-badge").innerHTML = data ;
         })
 };
+
+function addSepetMiktar(id,beden) {
+    fetch(`sepet.php?option=sepet-miktar-arti&param_id=${id}&param_beden=${beden}`)
+        .then(() => refreshSepet());
+};
+
+function subSepetMiktar(id,beden) {
+    fetch(`sepet.php?option=sepet-miktar-eksi&param_id=${id}&param_beden=${beden}`)
+        .then(() => refreshSepet());
+};
