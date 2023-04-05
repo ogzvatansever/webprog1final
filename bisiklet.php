@@ -21,6 +21,7 @@ include("baglan.php");
         </style>
     
     <script src="js/jquery-3.6.3.js"></script>
+    <script src="js/sepet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="img/favicon.ico">
     <link href="css/style.css" rel="stylesheet">
@@ -33,8 +34,8 @@ include('header.php');
 
     <?php
     $testid = $_GET['id'];
-    @$renkget = $_GET['renk'];
-    @$boyget = $_GET['boy'];
+    @$renkget = $_GET['param_renk'];
+    @$boyget = $_GET['param_beden'];
     $test = mysqli_query($conn,"select * from bisikletler where id='$testid'");
     if (mysqli_num_rows($test) != 1) {
         include("404.php");
@@ -59,33 +60,34 @@ include('header.php');
             <!--</div>-->
             <div class="col">
                 <div class="container test2">
-                    <form action="#" method="get" onsubmit="alert('Sepet özelliği ikinci dönem ekleneceği için şuanlık bir iş yapmıyor ama sepete gidecek verileri adres çubuğuna bakarak görebilirsiniz.'); ">
-                        <input type="hidden" name="id" value="<?php echo "$test1[0]"; ?>">
+                    <form id="bisiklet" action="#" method="get" onsubmit="event.preventDefault(); addSepet();">
+                        <input type="hidden" name="option" value="sepet-ekle">
+                        <input type="hidden" name="param_id" value="<?php echo "$test1[0]"; ?>">
                     <h5> <?php if ($test1[2] == NULL) echo "$test1[1] $test1[3] $test1[4]"; else echo "$test1[2] $test1[3] $test1[4]"; ?></h5>
                     <h6 class="text-muted"><?php $test3 = number_format($test1[5]); echo "$test3"; ?>$</h6>
                     <h6 style="margin-top: 2rem;">Renk</h6>
                     <div class="row text-center">
                         <div class="col-auto m-1">
-                            <input type="radio" class="btn-check" name="renk" id="renk" value="<?php echo "$test1[6]"; ?>" autocomplete="off" <?php if ($renkget == $test1[6]) echo "checked";?>>
+                            <input type="radio" class="btn-check" name="param_renk" id="renk" value="<?php echo "$test1[6]"; ?>" autocomplete="off" <?php if ($renkget == $test1[6]) echo "checked";?>>
                             <label class="btn btn-sm btn-outline-dark" for="renk"><?php echo "$test1[6]"; ?></label>
                         </div>
                     </div>
                     <h6 style="margin-top: 2rem;">Kadro Boyu</h6>
                     <div class="row text-center">
                         <div class="d-grid gap-1">
-                            <input type="radio" class="btn-check" name="boy" id="btn-s" value="S" autocomplete="off" <?php if ($boyget == "S") echo "checked"; ?>>
+                            <input type="radio" class="btn-check" name="param_beden" id="btn-s" value="S" autocomplete="off" <?php if ($boyget == "S") echo "checked"; ?>>
                             <label class="btn btn-sm btn-outline-dark" for="btn-s">S</label>
-                            <input type="radio" class="btn-check" name="boy" id="btn-m" value="M" autocomplete="off" <?php if ($boyget == "M") echo "checked"; ?>>
+                            <input type="radio" class="btn-check" name="param_beden" id="btn-m" value="M" autocomplete="off" <?php if ($boyget == "M") echo "checked"; ?>>
                             <label class="btn btn-sm btn-outline-dark" for="btn-m">M</label>
-                            <input type="radio" class="btn-check" name="boy" id="btn-l" value="L" autocomplete="off" <?php if ($boyget == "L") echo "checked"; ?>>
+                            <input type="radio" class="btn-check" name="param_beden" id="btn-l" value="L" autocomplete="off" <?php if ($boyget == "L") echo "checked"; ?>>
                             <label class="btn btn-sm btn-outline-dark" for="btn-l">L</label>
-                            <input type="radio" class="btn-check" name="boy" id="btn-xl" value="XL" autocomplete="off" <?php if ($boyget == "XL") echo "checked"; ?>>
+                            <input type="radio" class="btn-check" name="param_beden" id="btn-xl" value="XL" autocomplete="off" <?php if ($boyget == "XL") echo "checked"; ?>>
                             <label class="btn btn-sm btn-outline-dark" for="btn-xl">XL</label>
                         </div>
                     </div>
                     <h6 style="margin-top: 2rem;">Boy Yardımcısı</h6>
                     <div class="row text-center" style="margin-top: 2rem;">
-                        <button type="submit" class="btn btn-dark btn-block">Sepete Ekle</button>
+                        <button type="submit" class="btn btn-dark btn-block" value="Submit">Sepete Ekle</button>
                     </div>
                     </form>
                 </div>

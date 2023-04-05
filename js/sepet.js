@@ -41,3 +41,20 @@ function subSepetMiktar(id,beden) {
     fetch(`sepet.php?option=sepet-miktar-eksi&param_id=${id}&param_beden=${beden}`)
         .then(() => refreshSepet());
 };
+
+function addSepet() {
+    getform = document.querySelector("#bisiklet");
+    getparamid = getform.querySelector('input[name="param_id"]').value;
+    getparambeden = getform.querySelector('input[name="param_beden"]:checked').value;
+    fetch(`sepet.php?option=sepet-ekle&param_id=${getparamid}&param_beden=${getparambeden}`)
+        .then(() => refreshSepet())
+        .then(() => {
+            const bsOffcanvas = new bootstrap.Offcanvas('#offcanvasRight');
+            bsOffcanvas.show();
+        });
+};
+
+function rmSepet(id,beden) {
+    fetch(`sepet.php?option=sepet-cikar&param_id=${id}&param_beden=${beden}`)
+        .then(() => refreshSepet());
+};
