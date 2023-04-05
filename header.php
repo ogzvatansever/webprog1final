@@ -30,7 +30,7 @@
           </ul>
         </div>
         
-        <a href="#" type="button" class="link-dark position-relative ms-2 p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" onclick="getSepet()">
+        <a href="#" type="button" class="link-dark position-relative ms-2 p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" onclick="refreshSepet()">
         <i style="font-size: x-large;" class="bi bi-cart2"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
         1
@@ -75,7 +75,7 @@
               <div class="row">
                 <div class="col-3 ms-1">
                   <h6 class="m-0" style="white-space: nowrap;">Ara Toplam: </h6>
-                  <p class="m-0 mb-1">12,000$</p>
+                  <p id="sepet-toplam" class="m-0 mb-1">12,000$</p>
                 </div>
                 <div class="col-8 mb-1" style="margin-inline-end: 5px; margin-inline-start: 20px;">
                   <div class="row">
