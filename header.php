@@ -20,7 +20,7 @@
 
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="img/profile.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="#">Siparişlerim</a></li>
@@ -32,8 +32,8 @@
         
         <a href="#" type="button" class="link-dark position-relative ms-2 p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" onclick="refreshSepet()">
         <i style="font-size: x-large;" class="bi bi-cart2"></i>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        1
+        <span id="sepet-miktar-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        0
         </span>
         </a>
 
@@ -91,4 +91,5 @@
     </div>
   </header>
 
+  <script src="js/jquery-3.6.3.js"></script>
   <script src="js/sepet.js"></script>

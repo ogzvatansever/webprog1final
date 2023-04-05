@@ -1,10 +1,15 @@
+$( document ).ready(function(){
+    refreshSepet();
+})
+
 function refreshSepet() {
     getSepet();
     getAraToplam();
+    getSepetMiktar();
 };
 
 function getSepet() {
-    fetch ('sepet.php')
+    fetch ('sepet.php?option=sepet-body')
         .then((response) => response.text())
         .then((data) => {
             document.getElementById("sepet-body").innerHTML = data ;
@@ -12,9 +17,17 @@ function getSepet() {
 };
 
 function getAraToplam() {
-    fetch('sepet_toplam.php')
+    fetch('sepet.php?option=sepet-toplam')
         .then((response) => response.text())
         .then((data) => {
             document.getElementById("sepet-toplam").innerHTML = data ;
         })
-}
+};
+
+function getSepetMiktar() {
+    fetch('sepet.php?option=sepet-miktar')
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById("sepet-miktar-badge").innerHTML = data ;
+        })
+};
