@@ -22,7 +22,7 @@ include("baglan.php");
     
     <script src="js/jquery-3.6.3.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="img/favicon.ico">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>

@@ -2,7 +2,7 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 me-2 link-body-emphasis text-decoration-none">
-          <img src="logo.svg" height="40px"></img>
+          <img src="img/logo.svg" height="40px"></img>
         </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="index.php" class="nav-link px-2 link-dark">Anasayfa</a></li>
