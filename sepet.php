@@ -104,4 +104,28 @@ if ($option == 'sepet-cikar') {
     $conn -> query("DELETE FROM sepetler WHERE sepet_id=1 AND bisiklet_id=$param_id AND bisiklet_beden='$param_beden';");
 
 }
+
+if ($option == 'sepet-body-checkout') {
+
+    $sqlQuery = "SELECT * FROM sepetler WHERE sepet_id = 1";
+    $sepetsorgu = mysqli_query($conn,$sqlQuery);
+        
+    while ($satir = mysqli_fetch_array($sepetsorgu)) {
+        $bisiklet = $conn -> query("SELECT * FROM bisikletler WHERE id = $satir[2]") -> fetch_array();
+        ?>
+
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+            <a class="card-text m-0 mt-1 ms-2 p-0 link-dark text-decoration-none"></a>
+                <a href="bisiklet.php?id=<?php echo "$satir[2]"; ?>">
+                    <h6 class="my-0"><?php if ($bisiklet[2] == NULL) echo "$bisiklet[1] $bisiklet[3] $bisiklet[4]"; else echo "$bisiklet[2] $bisiklet[3] $bisiklet[4]"; ?></h6>
+                </a>
+                <small class="text-body-secondary">Brief description</small>
+            </div>
+            <span class="text-body-secondary">$12</span>
+        </li>
+
+        <?php
+    }
+}
 ?>

@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-8 mb-1" style="margin-inline-end: 5px; margin-inline-start: 20px;">
                   <div class="row">
-                    <button class="btn btn-dark btn-block">Satın Al</button>
+                    <a href="checkout.php" type="button" class="btn btn-dark btn-block">Satın Al</a>
                   </div>
                 </div>
               </div>
@@ -93,3 +93,4 @@
 
   <script src="js/jquery-3.6.3.js"></script>
   <script src="js/sepet.js"></script>
+  <script src="js/functions.js"></script>
