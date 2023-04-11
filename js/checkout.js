@@ -27,3 +27,12 @@ function refreshSepet() {
   getAraToplam("sepet-toplam");
   getSepetMiktar("sepet-miktar-badge");
 };
+
+function test() {
+  forms = document.querySelectorAll('.needs-validation')
+  //var test = forms.querySelector('input').value
+  
+  Array.from(forms.querySelector('input').value).forEach(form => {
+    console.log(form)
+  })
+};

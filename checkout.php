@@ -95,8 +95,6 @@ include("baglan.php");
     </style>
 
     
-    <!-- Custom styles for this template -->
-    <link href="checkout.css" rel="stylesheet">
   </head>
   <body class="bg-body-tertiary">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -126,7 +124,7 @@ include("baglan.php");
       </a>
     </div>
 
-    <div class="row g-5 mb-3">
+    <div class="row g-5 mb-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Sepetiniz</span>
@@ -134,27 +132,6 @@ include("baglan.php");
         </h4>
         <ul class="list-group mb-3">
           <div id="sepet-body-checkout">
-            <?php
-            $sqlQuery = "SELECT * FROM sepetler WHERE sepet_id = 1";
-            $sepetsorgu = mysqli_query($conn,$sqlQuery);
-                
-            while ($satir = mysqli_fetch_array($sepetsorgu)) {
-                $bisiklet = $conn -> query("SELECT * FROM bisikletler WHERE id = $satir[2]") -> fetch_array();
-                ?>
-
-                <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <div style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">
-                        <a href="bisiklet.php?id=<?php echo "$satir[2]"; ?>" class="link-dark text-decoration-none">
-                            <h6 class="my-0"><?php if ($bisiklet[2] == NULL) echo "$bisiklet[1] $bisiklet[3] $bisiklet[4]"; else echo "$bisiklet[2] $bisiklet[3] $bisiklet[4]"; ?></h6>
-                        </a>
-                        <small class="text-body-secondary"><?php echo "$satir[3] - $bisiklet[6]"; ?></small>
-                    </div>
-                    <span class="text-body-secondary"><?php $tempfiyat = number_format($bisiklet[5]); echo "$tempfiyat$"; ?></span>
-                </li>
-
-                <?php
-            }
-            ?>
           <!--
           <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
             <div class="text-success">
@@ -198,7 +175,7 @@ include("baglan.php");
                 Lütfen soyadınızı giriniz.
               </div>
             </div>
-
+            <!--
             <div class="col-12">
               <label for="username" class="form-label">Username</label>
               <div class="input-group has-validation">
@@ -217,9 +194,9 @@ include("baglan.php");
                 Please enter a valid email address for shipping updates.
               </div>
             </div>
-
+            -->
             <div class="col-12">
-              <label for="address" class="form-label">Adress</label>
+              <label for="address" class="form-label">Adres</label>
               <input type="text" class="form-control" id="address" placeholder="1234 Hilal Sk" required>
               <div class="invalid-feedback">
                 Lütfen adresinizi giriniz.

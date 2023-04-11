@@ -3,10 +3,16 @@ include("baglan.php");
 @$option = $_GET['option'];
 @$param_id = $_GET['param_id'];
 @$param_beden = $_GET['param_beden'];
+$sepetid = $conn -> query("SELECT id FROM sepet WHERE status = 0") -> fetch_array();
+if ($sepetid == NULL) {
+    $conn -> query("INSERT INTO sepet () VALUES ()");
+    $sepetid = $conn -> query("SELECT id FROM sepet WHERE status = 0") -> fetch_array();
+}
+
 
 if ($option == 'sepet-body') {
-
-    $sqlQuery = "SELECT * FROM sepetler WHERE sepet_id = 1";
+    
+    $sqlQuery = "SELECT * FROM sepet_detay WHERE sepet_id = $sepetid[0]";
     $sepetsorgu = mysqli_query($conn,$sqlQuery);
 
     if ($sepetsorgu -> num_rows > 0) {
@@ -53,7 +59,7 @@ if ($option == 'sepet-body') {
 
 if ($option == 'sepet-toplam') {
 
-    $sepetfiyatarray = ($conn -> query("SELECT bisikletler.bisiklet_fiyat, sepetler.miktar FROM sepetler INNER JOIN bisikletler ON bisikletler.id = sepetler.bisiklet_id where sepet_id = 1") -> fetch_all());
+    $sepetfiyatarray = ($conn -> query("SELECT bisikletler.bisiklet_fiyat, sepet_detay.miktar FROM sepet_detay INNER JOIN bisikletler ON bisikletler.id = sepet_detay.bisiklet_id where sepet_id = $sepetid[0]") -> fetch_all());
     $aratoplam = 0;
     foreach ($sepetfiyatarray as $value) {
         $aratoplam += $value[0]*$value[1];
@@ -67,7 +73,7 @@ if ($option == 'sepet-toplam') {
 
 if ($option == 'sepet-miktar') {
 
-    echo $conn -> query("SELECT '' FROM sepetler WHERE sepet_id = 1") -> num_rows;
+    echo $conn -> query("SELECT '' FROM sepet_detay WHERE sepet_id = $sepetid[0]") -> num_rows;
 
 }
 
@@ -75,7 +81,7 @@ if ($option == 'sepet-miktar') {
 
 if ($option == 'sepet-miktar-arti') {
     
-    $conn -> query("UPDATE sepetler SET miktar = miktar + 1 WHERE bisiklet_id = $param_id AND bisiklet_beden = '$param_beden'");
+    $conn -> query("UPDATE sepet_detay SET miktar = miktar + 1 WHERE sepet_id = $sepetid[0] AND bisiklet_id = $param_id AND bisiklet_beden = '$param_beden'");
 
 }
 
@@ -83,7 +89,7 @@ if ($option == 'sepet-miktar-arti') {
 
 if ($option == 'sepet-miktar-eksi') {
     
-    $conn -> query("UPDATE sepetler SET miktar = miktar - 1 WHERE bisiklet_id = $param_id AND bisiklet_beden = '$param_beden' AND miktar > 1");
+    $conn -> query("UPDATE sepet_detay SET miktar = miktar - 1 WHERE sepet_id = $sepetid[0] AND bisiklet_id = $param_id AND bisiklet_beden = '$param_beden' AND miktar > 1");
 
 }
 
@@ -91,23 +97,23 @@ if ($option == 'sepet-miktar-eksi') {
 
 if ($option == 'sepet-ekle') {
     // Checks if the same bike exists in the database
-    if (0 == $conn -> query("SELECT * FROM sepetler WHERE sepet_id=1 AND bisiklet_id=$param_id AND bisiklet_beden='$param_beden'") -> num_rows) {
-        $conn -> query("INSERT INTO sepetler (sepet_id,bisiklet_id,bisiklet_beden,miktar) VALUES (1,$param_id,'$param_beden',1)");
+    if (0 == $conn -> query("SELECT * FROM sepet_detay WHERE sepet_id=$sepetid[0] AND bisiklet_id=$param_id AND bisiklet_beden='$param_beden'") -> num_rows) {
+        $conn -> query("INSERT INTO sepet_detay (sepet_id,bisiklet_id,bisiklet_beden,miktar) VALUES ($sepetid[0],$param_id,'$param_beden',1)");
     }
     else {
-        $conn -> query("UPDATE sepetler SET miktar = miktar + 1 WHERE bisiklet_id = $param_id AND bisiklet_beden = '$param_beden'");
+        $conn -> query("UPDATE sepet_detay SET miktar = miktar + 1 WHERE sepet_id = $sepetid[0] AND bisiklet_id = $param_id AND bisiklet_beden = '$param_beden'");
     }
 }
 
 if ($option == 'sepet-cikar') {
 
-    $conn -> query("DELETE FROM sepetler WHERE sepet_id=1 AND bisiklet_id=$param_id AND bisiklet_beden='$param_beden';");
+    $conn -> query("DELETE FROM sepet_detay WHERE sepet_id = $sepetid[0] AND bisiklet_id=$param_id AND bisiklet_beden='$param_beden';");
 
 }
 
 if ($option == 'sepet-body-checkout') {
 
-    $sqlQuery = "SELECT * FROM sepetler WHERE sepet_id = 1";
+    $sqlQuery = "SELECT * FROM sepet_detay WHERE sepet_id = $sepetid[0]";
     $sepetsorgu = mysqli_query($conn,$sqlQuery);
         
     while ($satir = mysqli_fetch_array($sepetsorgu)) {
