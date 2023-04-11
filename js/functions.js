@@ -48,3 +48,11 @@ function rmSepet(id,beden) {
     fetch(`sepet.php?option=sepet-cikar&param_id=${id}&param_beden=${beden}`)
         .then(() => refreshSepet());
 };
+
+function getSepetCheckout(elementID) {
+    fetch('sepet.php?option=sepet-body-checkout')
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById(elementID).innerHTML = data;
+        })
+}

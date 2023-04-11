@@ -23,7 +23,7 @@ $( document ).ready(function(){
 })
 
 function refreshSepet() {
-  //getSepet("sepet-body-checkout");
+  getSepetCheckout("sepet-body-checkout");
   getAraToplam("sepet-toplam");
   getSepetMiktar("sepet-miktar-badge");
 };

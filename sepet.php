@@ -115,14 +115,13 @@ if ($option == 'sepet-body-checkout') {
         ?>
 
         <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-            <a class="card-text m-0 mt-1 ms-2 p-0 link-dark text-decoration-none"></a>
-                <a href="bisiklet.php?id=<?php echo "$satir[2]"; ?>">
+            <div style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">
+                <a href="bisiklet.php?id=<?php echo "$satir[2]"; ?>" class="link-dark text-decoration-none">
                     <h6 class="my-0"><?php if ($bisiklet[2] == NULL) echo "$bisiklet[1] $bisiklet[3] $bisiklet[4]"; else echo "$bisiklet[2] $bisiklet[3] $bisiklet[4]"; ?></h6>
                 </a>
-                <small class="text-body-secondary">Brief description</small>
+                <small class="text-body-secondary"><?php echo "$satir[3] - $bisiklet[6]"; ?></small>
             </div>
-            <span class="text-body-secondary">$12</span>
+            <span class="text-body-secondary"><?php $tempfiyat = number_format($bisiklet[5]); echo "$tempfiyat$"; ?></span>
         </li>
 
         <?php

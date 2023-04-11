@@ -121,60 +121,41 @@ include("baglan.php");
 <div class="container" style="max-width: 960px;">
   <main>
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="img/logo.svg" alt="" width="128" height="128">
-      <h2>Checkout form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+      <a href="index.php">
+        <img class="d-block mx-auto mb-4" src="img/logo.svg" alt="" width="128" height="128">
+      </a>
     </div>
 
-    <div class="row g-5">
+    <div class="row g-5 mb-3">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Sepetiniz</span>
           <span id="sepet-miktar-badge" class="badge bg-primary rounded-pill">0</span>
         </h4>
         <ul class="list-group mb-3">
-          <div id="sepet-body-checkout"><?php
-          $sqlQuery = "SELECT * FROM sepetler WHERE sepet_id = 1";
-    $sepetsorgu = mysqli_query($conn,$sqlQuery);
-        
-    while ($satir = mysqli_fetch_array($sepetsorgu)) {
-        $bisiklet = $conn -> query("SELECT * FROM bisikletler WHERE id = $satir[2]") -> fetch_array();
-        ?>
+          <div id="sepet-body-checkout">
+            <?php
+            $sqlQuery = "SELECT * FROM sepetler WHERE sepet_id = 1";
+            $sepetsorgu = mysqli_query($conn,$sqlQuery);
+                
+            while ($satir = mysqli_fetch_array($sepetsorgu)) {
+                $bisiklet = $conn -> query("SELECT * FROM bisikletler WHERE id = $satir[2]") -> fetch_array();
+                ?>
 
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">
-                <a href="bisiklet.php?id=<?php echo "$satir[2]"; ?>" class="link-dark text-decoration-none">
-                    <h6 class="my-0"><?php if ($bisiklet[2] == NULL) echo "$bisiklet[1] $bisiklet[3] $bisiklet[4]"; else echo "$bisiklet[2] $bisiklet[3] $bisiklet[4]"; ?></h6>
-                </a>
-                <small class="text-body-secondary"><?php echo "$satir[3] - $bisiklet[6]"; ?></small>
-            </div>
-            <span class="text-body-secondary"><?php $tempfiyat = number_format($bisiklet[5]); echo "$tempfiyat$"; ?></span>
-        </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div style="text-overflow:ellipsis; white-space: nowrap; overflow: hidden;">
+                        <a href="bisiklet.php?id=<?php echo "$satir[2]"; ?>" class="link-dark text-decoration-none">
+                            <h6 class="my-0"><?php if ($bisiklet[2] == NULL) echo "$bisiklet[1] $bisiklet[3] $bisiklet[4]"; else echo "$bisiklet[2] $bisiklet[3] $bisiklet[4]"; ?></h6>
+                        </a>
+                        <small class="text-body-secondary"><?php echo "$satir[3] - $bisiklet[6]"; ?></small>
+                    </div>
+                    <span class="text-body-secondary"><?php $tempfiyat = number_format($bisiklet[5]); echo "$tempfiyat$"; ?></span>
+                </li>
 
-        <?php
-    }
-    ?>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Product name</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$12</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Second product</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$8</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Third item</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$5</span>
-          </li>
+                <?php
+            }
+            ?>
+          <!--
           <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
             <div class="text-success">
               <h6 class="my-0">Promo code</h6>
@@ -182,19 +163,21 @@ include("baglan.php");
             </div>
             <span class="text-success">−$5</span>
           </li>
+          -->
           </div>
           <li class="list-group-item d-flex justify-content-between">
             <span>Ara Toplam (USD)</span>
             <strong id="sepet-toplam">0$</strong>
           </li>
         </ul>
-
+        <!--
         <form class="card p-2">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Promo code">
             <button type="submit" class="btn btn-secondary">Redeem</button>
           </div>
         </form>
+        -->
       </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Billing address</h4>
@@ -353,14 +336,6 @@ include("baglan.php");
     </div>
   </main>
 
-  <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-    <p class="mb-1">&copy; 2017–2023 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
 </div>
 
 
