@@ -158,7 +158,7 @@ include("baglan.php");
       </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Fatura Adresi</h4>
-        <form class="needs-validation" novalidate>
+        <form id="checkoutCart" onsubmit="checkoutCart()" class="needs-validation" novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Adınız</label>

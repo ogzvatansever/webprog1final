@@ -12,7 +12,6 @@
         event.preventDefault()
         event.stopPropagation()
       }
-
       form.classList.add('was-validated')
     }, false)
   })
@@ -28,11 +27,23 @@ function refreshSepet() {
   getSepetMiktar("sepet-miktar-badge");
 };
 
-function test() {
-  forms = document.querySelectorAll('.needs-validation')
-  //var test = forms.querySelector('input').value
-  
-  Array.from(forms.querySelector('input').value).forEach(form => {
-    console.log(form)
-  })
+function checkoutCart() {
+  getform = document.querySelector("#checkoutCart");
+  if (getform.checkValidity()) {
+    fetch(`sepet.php?option=checkout&
+                            sepet_id=${1}&
+                            buyer_fname=${getform.querySelector('input[id="firstName"]').value}&
+                            buyer_sname=${getform.querySelector('input[id="lastName"]').value}&
+                            buyer_adress=${getform.querySelector('input[id="address"]').value}&
+                            buyer_adress2=${getform.querySelector('input[id="address2"]').value}&
+                            buyer_country=${getform.querySelector('select[id="country"]').value}&
+                            buyer_city=${getform.querySelector('select[id="state"]').value}&
+                            buyer_zip=${getform.querySelector('input[id="zip"]').value}&
+                            buyer_cc_owner=${getform.querySelector('input[id="cc-name"]').value}&
+                            buyer_cc_number=${getform.querySelector('input[id="cc-number"]').value}&
+                            buyer_cc_expiry=${getform.querySelector('input[id="cc-expiration"]').value}&
+                            buyer_cc_cvv=${getform.querySelector('input[id="cc-cvv"]').value}
+                            `)
+                            .finally(() => location.href = "index.php")
+  }
 };
