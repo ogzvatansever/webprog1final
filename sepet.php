@@ -127,7 +127,7 @@ if ($option == 'sepet-body-checkout') {
                 </a>
                 <small class="text-body-secondary"><?php echo "$satir[3] - $bisiklet[6]"; ?></small>
             </div>
-            <span class="text-body-secondary"><?php $tempfiyat = number_format($bisiklet[5]); echo "$tempfiyat$"; ?></span>
+            <span class="text-body-secondary"><?php $tempfiyat = number_format($bisiklet[5]); echo "$tempfiyat$ x".$satir[4]; ?></span>
         </li>
 
         <?php
