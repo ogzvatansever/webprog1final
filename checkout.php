@@ -127,8 +127,8 @@ include("baglan.php");
     <div class="row g-5 mb-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary">Sepetiniz</span>
-          <span id="sepet-miktar-badge" class="badge bg-primary rounded-pill">0</span>
+          <span class="text-success">Sepetiniz</span>
+          <span id="sepet-miktar-badge" class="badge bg-success rounded-pill">0</span>
         </h4>
         <ul class="list-group mb-3">
           <div id="sepet-body-checkout">
@@ -147,14 +147,11 @@ include("baglan.php");
             <strong id="sepet-toplam">0$</strong>
           </li>
         </ul>
-        <!--
-        <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </form>
-        -->
+        
+        <div class="card p-2" style="border: 0;">
+          <button type="submit" class="btn btn-success" onclick="document.getElementById('form_button').click()">Satın Al</button>
+        </div>
+        
       </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Fatura Adresi</h4>
@@ -277,10 +274,7 @@ include("baglan.php");
               </div>
             </div>
           </div>
-
-          <hr class="my-4">
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Satın Al</button>
+          <button id="form_button" class="w-100 btn btn-primary btn-lg" type="submit" style="display: none;">Satın Al</button>
         </form>
       </div>
     </div>
