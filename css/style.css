@@ -138,3 +138,5 @@ body{
 .offcanvas-body::-webkit-scrollbar {
   display: none;
 }
+
+.modal-open, body {overflow: inherit !important;}

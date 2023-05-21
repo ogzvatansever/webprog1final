@@ -85,7 +85,14 @@ include('header.php');
                             <label class="btn btn-sm btn-outline-dark" for="btn-xl">XL</label>
                         </div>
                     </div>
-                    <h6 style="margin-top: 2rem;">Boy Yardımcısı</h6>
+                    <a href="#" style="text-decoration: none; color: inherit;" data-bs-toggle="modal" data-bs-target="#sizeModal"><h6 style="margin-top: 2rem;">Boy Yardımcısı</h6></a>
+                    <div class="modal fade" id="sizeModal" tabindex="-1" aria-labelledby="sizeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <img src="https://i.shgcdn.com/71d556dd-2364-4c55-ada3-ddd76caa4712/-/format/auto/-/preview/3000x3000/-/quality/lighter/">
+                            </div>
+                        </div>
+                    </div>
                     <div class="row text-center" style="margin-top: 2rem;">
                         <button type="submit" class="btn btn-dark btn-block" value="Submit">Sepete Ekle</button>
                     </div>
