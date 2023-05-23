@@ -99,7 +99,13 @@
     
     
 <main class="form-signin w-100 m-auto">
-  <form method="post" action="../session/denetim.php">
+  <?php
+  session_start();
+  if (isset($_SESSION["logged-in"])) {
+    header("Location:../index.php");
+  }
+  ?>
+  <form method="post" action="login.php">
     <a href="../index.php">
       <img class="mb-4" src="../img/logo.svg" alt="" height="180">
     </a>
@@ -114,7 +120,7 @@
       <label for="floatingPassword">Şifre</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş Yap</button>
-    <button class="w-100 btn btn-lg btn-dark mt-2" type="submit" >Kayıt Ol</button>
+    <a href="../index.php" class="w-100 btn btn-lg btn-dark mt-2" >Kayıt Ol</a>
   </form>
 </main>
 

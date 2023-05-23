@@ -1,5 +1,9 @@
 <?php
 include("baglan.php");
+session_start();
+if (!isset($_SESSION["logged-in"])) {
+  header("Location:index.php");
+}
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -10,7 +14,7 @@ include("baglan.php");
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Checkout example · Bootstrap v5.3</title>
+    <title>Sepetiniz</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
 

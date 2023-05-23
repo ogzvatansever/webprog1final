@@ -18,6 +18,10 @@
           <li><a href="#" class="nav-link px-2 link-dark">Hakkımızda</a></li>
         </ul>
 
+          <?php
+          session_start();
+          if (isset($_SESSION["logged-in"])) {
+            ?>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="img/profile.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -26,9 +30,18 @@
             <li><a class="dropdown-item" href="#">Siparişlerim</a></li>
             <li><a class="dropdown-item" href="#">Bilgilerim</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Çıkış Yap</a></li>
+            <li><a href="sign-in/logout.php" class="dropdown-item" href="#">Çıkış Yap</a></li>
           </ul>
-        </div>
+          </div>
+            <?php
+          }
+          else {
+            ?>
+            <a href="sign-in" class="nav-link px-2 link-dark">Giriş Yap</a>
+          <?php
+          }
+          ?>
+          
         
         <a href="#" type="button" class="link-dark position-relative ms-2 p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" onclick="refreshSepet()">
         <i style="font-size: x-large;" class="bi bi-cart2"></i>
