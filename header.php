@@ -27,7 +27,7 @@
             <img src="img/profile.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="#">Siparişlerim</a></li>
+            <li><a class="dropdown-item" href="orders.php">Siparişlerim</a></li>
             <li><a class="dropdown-item" href="#">Bilgilerim</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a href="sign-in/logout.php" class="dropdown-item" href="#">Çıkış Yap</a></li>
