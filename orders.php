@@ -37,6 +37,10 @@ if (!isset($_SESSION["logged-in"])) {
         <?php
     }
     while ($satir = mysqli_fetch_array($siparissorgu)) {
+        $siparisdetaysorgu = mysqli_query($conn,"SELECT * FROM sepet_detay WHERE sepet_id = ".$satir[1]);
+        while ($detaysatir = mysqli_fetch_array($siparisdetaysorgu)) {
+            echo $detaysatir[2];
+        }
         ?>
         <div class="row mt-3">
             <div class="col">Column</div>
