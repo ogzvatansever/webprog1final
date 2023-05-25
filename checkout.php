@@ -2,7 +2,7 @@
 include("baglan.php");
 session_start();
 if (!isset($_SESSION["logged-in"])) {
-  header("Location:index.php");
+  header("Location:sign-in");
 }
 ?>
 <!doctype html>
