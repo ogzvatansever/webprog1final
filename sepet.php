@@ -1,12 +1,13 @@
 <?php
 include("baglan.php");
+session_start();
 @$option = $_GET['option'];
 @$param_id = $_GET['param_id'];
 @$param_beden = $_GET['param_beden'];
-$sepetid = $conn -> query("SELECT id FROM sepet WHERE status = 0") -> fetch_array();
+$sepetid = $conn -> query("SELECT id FROM sepet WHERE status = 0 AND user = '".@$_SESSION["user"]."'") -> fetch_array();
 if ($sepetid == NULL) {
-    $conn -> query("INSERT INTO sepet () VALUES ()");
-    $sepetid = $conn -> query("SELECT id FROM sepet WHERE status = 0") -> fetch_array();
+    $conn -> query("INSERT INTO sepet (user) VALUES ('".@$_SESSION["user"]."')");
+    $sepetid = $conn -> query("SELECT id FROM sepet WHERE status = 0 AND user = '".@$_SESSION["user"]."'") -> fetch_array();
 }
 
 
