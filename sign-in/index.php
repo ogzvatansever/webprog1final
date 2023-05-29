@@ -1,19 +1,10 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
-
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.111.3">
-    <title>Signin Template · Bootstrap v5.3</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
-
-    
-
-    
+    <link rel="icon" href="../img/favicon.ico">
+    <title>Giriş Yap</title>  
 
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -120,7 +111,7 @@
       <label for="floatingPassword">Şifre</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Giriş Yap</button>
-    <a href="../index.php" class="w-100 btn btn-lg btn-dark mt-2" >Kayıt Ol</a>
+    <a href="signup.php" class="w-100 btn btn-lg btn-dark mt-2" >Kayıt Ol</a>
   </form>
 </main>
 
