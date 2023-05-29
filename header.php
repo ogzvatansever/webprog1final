@@ -28,7 +28,15 @@
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="orders.php">Siparişlerim</a></li>
-            <li><a class="dropdown-item" href="#">Bilgilerim</a></li>
+            <?php
+            include ("baglan.php");
+            if (1 == $conn -> query("SELECT level FROM uyeler WHERE mail = '".$_SESSION["user"]."'") -> fetch_column()) {
+              ?>
+              <li><a class="dropdown-item" href="dashboard">Admin Paneli</a></li>
+              <?php
+            }
+            ?>
+            
             <li><hr class="dropdown-divider"></li>
             <li><a href="sign-in/logout.php" class="dropdown-item" href="#">Çıkış Yap</a></li>
           </ul>
