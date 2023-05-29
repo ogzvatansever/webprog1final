@@ -137,7 +137,7 @@ if ($option == 'sepet-body-checkout') {
 
 if ($option == 'checkout') {
 
-    $conn -> query("INSERT INTO siparis (sepet_id,buyer_fname,buyer_sname,buyer_adress,buyer_adress2,buyer_country,buyer_city,buyer_zip,buyer_cc_owner,buyer_cc_number,buyer_cc_expiry,buyer_cc_cvv) VALUES ($sepetid[0],'".$_GET['buyer_fname']."','".$_GET['buyer_sname']."','".$_GET['buyer_adress']."','".$_GET['buyer_adress2']."','".$_GET['buyer_country']."','".$_GET['buyer_city']."','".$_GET['buyer_zip']."','".$_GET['buyer_cc_owner']."','".$_GET['buyer_cc_number']."','".$_GET['buyer_cc_expiry']."','".$_GET['buyer_cc_cvv']."')");
+    $conn -> query("INSERT INTO siparis (sepet_id,buyer_fname,buyer_sname,buyer_adress,buyer_adress2,buyer_country,buyer_city,buyer_zip,buyer_cc_owner,buyer_cc_number,buyer_cc_expiry,buyer_cc_cvv,buyer) VALUES ($sepetid[0],'".$_GET['buyer_fname']."','".$_GET['buyer_sname']."','".$_GET['buyer_adress']."','".$_GET['buyer_adress2']."','".$_GET['buyer_country']."','".$_GET['buyer_city']."','".$_GET['buyer_zip']."','".$_GET['buyer_cc_owner']."','".$_GET['buyer_cc_number']."','".$_GET['buyer_cc_expiry']."','".$_GET['buyer_cc_cvv']."','".$_GET['buyer']."')");
     $conn -> query("UPDATE sepet SET status = 1 WHERE id = $sepetid[0]");
 
 }

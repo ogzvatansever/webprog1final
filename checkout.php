@@ -160,6 +160,7 @@ if (!isset($_SESSION["logged-in"])) {
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Fatura Adresi</h4>
         <form id="checkoutCart" onsubmit="checkoutCart()" class="needs-validation" novalidate>
+        <input type="hidden" id="hidden-buyer" name="buyer" value="<?php echo $_SESSION["user"]; ?>">
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Adınız</label>

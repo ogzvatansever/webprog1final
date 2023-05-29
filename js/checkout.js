@@ -42,8 +42,9 @@ function checkoutCart() {
                             buyer_cc_owner=${getform.querySelector('input[id="cc-name"]').value}&
                             buyer_cc_number=${getform.querySelector('input[id="cc-number"]').value}&
                             buyer_cc_expiry=${getform.querySelector('input[id="cc-expiration"]').value}&
-                            buyer_cc_cvv=${getform.querySelector('input[id="cc-cvv"]').value}
+                            buyer_cc_cvv=${getform.querySelector('input[id="cc-cvv"]').value}&
+                            buyer=${getform.querySelector('input[id="hidden-buyer"]').value}
                             `)
-                            .finally(() => location.href = "index.php")
+                            .finally(() => location.href = "orders.php")
   }
 };
