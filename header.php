@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <header class="p-3 mb-5 border-bottom fixed-top bg-light">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -15,11 +18,10 @@
               <li><a href="bisikletler.php?tur%5B%5D=ROAD" class="dropdown-item">Yol Bisikletleri</a></li>
             </ul>
           </div>
-          <li><a href="#" class="nav-link px-2 link-dark">Hakkımızda</a></li>
+          <li><a href="about.php" class="nav-link px-2 link-dark">Hakkımızda</a></li>
         </ul>
 
           <?php
-          session_start();
           if (isset($_SESSION["logged-in"])) {
             ?>
         <div class="dropdown text-end">
