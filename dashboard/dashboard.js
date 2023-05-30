@@ -1,39 +1,40 @@
+
+//fetch('function.php')
+//  .then((response) => response.text())
+//  .then((data) => {
+//    testediyom = JSON.parse(data) ;
+//  });
 /* globals Chart:false, feather:false */
 
 (() => {
   'use strict'
 
   feather.replace({ 'aria-hidden': 'true' })
-
-  // Graphs
-  const ctx = document.getElementById('myChart')
+var testediyom = [1,2] ;
+  //var testediyom ;
+fetch('function.php')
+  .then((response) => response.text())
+  .then((data) => {
+    const ctx = document.getElementById('gunlukCiro')
   // eslint-disable-next-line no-unused-vars
   const myChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
+        'Pazartesi',
+        'Salı',
+        'Çarşamba',
+        'Perşembe',
+        'Cuma',
+        'Cumartesi',
+        'Pazar'
       ],
       datasets: [{
-        data: [
-          15339,
-          21345,
-          18483,
-          24003,
-          23489,
-          24092,
-          12034
-        ],
+        data: JSON.parse(data),
         lineTension: 0,
         backgroundColor: 'transparent',
         borderColor: '#007bff',
-        borderWidth: 4,
+        borderWidth: 8,
         pointBackgroundColor: '#007bff'
       }]
     },
@@ -47,5 +48,6 @@
         }
       }
     }
+  })
   })
 })()
