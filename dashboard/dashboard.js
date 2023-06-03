@@ -21,13 +21,13 @@ fetch('function.php')
     type: 'line',
     data: {
       labels: [
-        'Pazartesi',
-        'Salı',
-        'Çarşamba',
-        'Perşembe',
-        'Cuma',
-        'Cumartesi',
-        'Pazar'
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
       ],
       datasets: [{
         data: JSON.parse(data),

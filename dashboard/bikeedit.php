@@ -7,9 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Anasayfa - Admin Paneli</title>
+    <title>Bisikleti Düzenle - Admin Paneli</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
 
     
 
@@ -132,7 +134,7 @@
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">
+            <a class="nav-link" aria-current="page" href="index.php">
               <span data-feather="home" class="align-text-bottom"></span>
               Anasayfa
             </a>
@@ -150,108 +152,88 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="items.php">
+            <a class="nav-link active" href="items.php">
               <span data-feather="users" class="align-text-bottom"></span>
               Ürünler
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="aedit.php">
+            <a class="nav-link" href="#">
               <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-              Anasayfa Verileri
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers" class="align-text-bottom"></span>
+              Integrations
             </a>
           </li>
         </ul>
-<!--
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
-          <span>Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
-    -->
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Son 7 gün cirosu</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-          </div>
-          <!--
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            This week
-          </button>
-    -->
+      <h2 class="mt-2">Bisikleti Düzenle</h2>
+      <?php
+      include("../baglan.php");
+      $bisiklet = $conn -> query("SELECT * FROM bisikletler WHERE id = ".$_GET["bisiklet"]) -> fetch_array();
+      ?>
+        <form action="bikeupdate.php" method="GET">
+          <input type="hidden" id="bikeEditID" name="bisiklet" value="<?php echo $_GET["bisiklet"] ?>">
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditMarka" name="bisiklet_marka" placeholder=" " value="<?php echo $bisiklet[1] ?>">
+            <label for="bikeEditMarka">Marka</label>
         </div>
-      </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditMarka2" name="bisiklet_marka2" placeholder=" " value="<?php echo $bisiklet[2] ?>">
+            <label for="bikeEditMarka2">Marka 2</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditModel" name="bisiklet_model" placeholder=" " value="<?php echo $bisiklet[3] ?>">
+            <label for="bikeEditModel">Model</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditMode2l" name="bisiklet_model2" placeholder=" " value="<?php echo $bisiklet[4] ?>">
+            <label for="bikeEditModel2">Model 2</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditFiyat" name="bisiklet_fiyat" placeholder=" " value="<?php echo $bisiklet[5] ?>">
+            <label for="bikeEditFiyat">Fiyat</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditRenk" name="bisiklet_renk" placeholder=" " value="<?php echo $bisiklet[6] ?>">
+            <label for="bikeEditRenk">Renk</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditTur" name="bisiklet_tur" placeholder=" " value="<?php echo $bisiklet[7] ?>">
+            <label for="bikeEditTur">Tur</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditTarz" name="bisiklet_tarz" placeholder=" " value="<?php echo $bisiklet[8] ?>">
+            <label for="bikeEditTarz">Tarz</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditAciklama" name="bisiklet_aciklama" placeholder=" " value="<?php echo $bisiklet[9] ?>">
+            <label for="bikeEditAciklama">Açıklama</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="bikeEditDiger" name="bisiklet_diger" placeholder=" " value="<?php echo $bisiklet[10] ?>">
+            <label for="bikeEditDiger">Diğer</label>
+        </div>
+        <div>
+        <button class="btn btn-primary mb-2" type="submit">Kaydet</button>
+        </div>
+        </form>
+        <a class="btn btn-dark mb-5" href="detailedit.php?bisiklet=<?php echo $bisiklet[0] ?>">Detayları Düzenle</a>
 
-      <canvas class="my-4 w-100" id="gunlukCiro" width="900" height="380"></canvas>
-
-      <h2>Son 7 Günlük Kargolanmayı Bekleyen Siparişler</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Satın Alan</th>
-              <th scope="col">Fatura Adı</th>
-              <th scope="col">Adres</th>
-              <th scope="col">Yapılan Ödeme</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            include("../baglan.php");
-            $yeniquery = $conn -> query("SELECT * FROM siparis WHERE status = 1 and date > date_sub(current_date(),interval 7 day) and date < date_sub(current_date(),interval 0 day)");
-            while ($siparis = mysqli_fetch_array($yeniquery)) {
-              echo "<tr>";
-              echo "<td>".$siparis[0]."</td>";
-              echo "<td>".$siparis[14]."</td>";
-              echo "<td>".$siparis[3]." ".$siparis[4]."</td>";
-              echo "<td>".$siparis[5]." ".$siparis[6]."</td>";
-              $bisikletid = $conn -> query("SELECT bisiklet_id FROM sepet_detay WHERE sepet_id = ".$siparis[1]) ;
-              $outnumber = 0;
-              while ($bisikletler = mysqli_fetch_array($bisikletid)) {
-                  $yeniquery2 = $conn -> query("SELECT bisiklet_fiyat FROM bisikletler WHERE id = ".$bisikletler[0]) -> fetch_column() ;
-                  $outnumber += $yeniquery2;
-              }
-              echo "<td>".$outnumber."</td>";
-              echo "</tr>";
-            }
-            ?>
-            
-          </tbody>
-        </table>
-      </div>
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="uploadID" name="bisiklet" value="<?php echo $_GET["bisiklet"] ?>">
+            <div class="mb-3">
+                <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple" multiple>
+                <input class="btn btn-primary mt-2" type="submit" value="Yükle" name="submit">
+            </div>
+        </form>
     </main>
   </div>
 </div>

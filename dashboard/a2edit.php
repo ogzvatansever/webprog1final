@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Anasayfa - Admin Paneli</title>
+    <title>Anasayfa Verileri - Admin Paneli</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
 
@@ -132,7 +132,7 @@
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">
+            <a class="nav-link" aria-current="page" href="index.php">
               <span data-feather="home" class="align-text-bottom"></span>
               Anasayfa
             </a>
@@ -156,102 +156,59 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="aedit.php">
+            <a class="nav-link active" href="#">
               <span data-feather="bar-chart-2" class="align-text-bottom"></span>
               Anasayfa Verileri
             </a>
           </li>
         </ul>
-<!--
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
-          <span>Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
-    -->
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Son 7 gün cirosu</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-          </div>
-          <!--
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            This week
-          </button>
-    -->
+    <h2 class="mt-2">Bisikleti Düzenle</h2>
+      <?php
+      include("../baglan.php");
+      $hakkinda = $conn -> query("SELECT * FROM hakkimizda") -> fetch_array();
+      ?>
+        <form action="a2update.php" method="GET">
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="baslik1" name="baslik1" placeholder=" " value="<?php echo $hakkinda[0] ?>">
+            <label for="baslik1">baslik1</label>
         </div>
-      </div>
-
-      <canvas class="my-4 w-100" id="gunlukCiro" width="900" height="380"></canvas>
-
-      <h2>Son 7 Günlük Kargolanmayı Bekleyen Siparişler</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Satın Alan</th>
-              <th scope="col">Fatura Adı</th>
-              <th scope="col">Adres</th>
-              <th scope="col">Yapılan Ödeme</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            include("../baglan.php");
-            $yeniquery = $conn -> query("SELECT * FROM siparis WHERE status = 1 and date > date_sub(current_date(),interval 7 day) and date < date_sub(current_date(),interval 0 day)");
-            while ($siparis = mysqli_fetch_array($yeniquery)) {
-              echo "<tr>";
-              echo "<td>".$siparis[0]."</td>";
-              echo "<td>".$siparis[14]."</td>";
-              echo "<td>".$siparis[3]." ".$siparis[4]."</td>";
-              echo "<td>".$siparis[5]." ".$siparis[6]."</td>";
-              $bisikletid = $conn -> query("SELECT bisiklet_id FROM sepet_detay WHERE sepet_id = ".$siparis[1]) ;
-              $outnumber = 0;
-              while ($bisikletler = mysqli_fetch_array($bisikletid)) {
-                  $yeniquery2 = $conn -> query("SELECT bisiklet_fiyat FROM bisikletler WHERE id = ".$bisikletler[0]) -> fetch_column() ;
-                  $outnumber += $yeniquery2;
-              }
-              echo "<td>".$outnumber."</td>";
-              echo "</tr>";
-            }
-            ?>
-            
-          </tbody>
-        </table>
-      </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="yazi1" name="yazi1" placeholder=" " value="<?php echo $hakkinda[1] ?>">
+            <label for="yazi1">yazi1</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="resim1" name="resim1" placeholder=" " value="<?php echo $hakkinda[2] ?>">
+            <label for="resim1">resim1</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="baslik2" name="baslik2" placeholder=" " value="<?php echo $hakkinda[3] ?>">
+            <label for="baslik2">baslik2</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="yazi2" name="yazi2" placeholder=" " value="<?php echo $hakkinda[4] ?>">
+            <label for="yazi2">yazi2</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="resim2" name="resim2" placeholder=" " value="<?php echo $hakkinda[5] ?>">
+            <label for="resim2">resim2</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="baslik3" name="baslik3" placeholder=" " value="<?php echo $hakkinda[6] ?>">
+            <label for="baslik3">baslik3</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="yazi3" name="yazi3" placeholder=" " value="<?php echo $hakkinda[7] ?>">
+            <label for="yazi3">yazi3</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="form-control" class="form-control" id="resim3" name="resim3" placeholder=" " value="<?php echo $hakkinda[8] ?>">
+            <label for="resim3">resim3</label>
+        </div>
+        <button class="btn btn-primary mb-5" type="submit">Kaydet</button>
     </main>
   </div>
 </div>

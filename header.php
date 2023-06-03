@@ -18,7 +18,9 @@ session_start();
               <li><a href="bisikletler.php?tur%5B%5D=ROAD" class="dropdown-item">Yol Bisikletleri</a></li>
             </ul>
           </div>
+          <!--
           <li><a href="about.php" class="nav-link px-2 link-dark">Hakkımızda</a></li>
+-->
         </ul>
 
           <?php

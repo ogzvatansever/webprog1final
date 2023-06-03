@@ -42,7 +42,7 @@ include('header.php');
         die();
     }
     $test1 = mysqli_fetch_array($test);
-    $bisikletdetay = mysqli_fetch_array(mysqli_query($conn,"select * from bisiklet_detay where id='$testid'"))
+    $bisikletdetay = mysqli_fetch_array(mysqli_query($conn,"select * from bisiklet_detay where bisiklet_id='$testid'"))
     ?>
     <div class="container" style="margin-top: 64px;">
         <div class="row">

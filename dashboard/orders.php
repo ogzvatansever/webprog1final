@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Anasayfa - Admin Paneli</title>
+    <title>Siparişler - Admin Paneli</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
 
@@ -132,13 +132,13 @@
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">
+            <a class="nav-link" aria-current="page" href="index.php">
               <span data-feather="home" class="align-text-bottom"></span>
               Anasayfa
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="orders.php">
+            <a class="nav-link active" href="#">
               <span data-feather="file" class="align-text-bottom"></span>
               Siparisler
             </a>
@@ -162,61 +162,11 @@
             </a>
           </li>
         </ul>
-<!--
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
-          <span>Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
-    -->
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Son 7 gün cirosu</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-          </div>
-          <!--
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            This week
-          </button>
-    -->
-        </div>
-      </div>
-
-      <canvas class="my-4 w-100" id="gunlukCiro" width="900" height="380"></canvas>
-
-      <h2>Son 7 Günlük Kargolanmayı Bekleyen Siparişler</h2>
+    <h2 class="mt-2">Siparişler</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -226,12 +176,14 @@
               <th scope="col">Fatura Adı</th>
               <th scope="col">Adres</th>
               <th scope="col">Yapılan Ödeme</th>
+              <th scope="col">Tarih</th>
+              <th scope="col">Onay Durumu</th>
             </tr>
           </thead>
           <tbody>
             <?php
             include("../baglan.php");
-            $yeniquery = $conn -> query("SELECT * FROM siparis WHERE status = 1 and date > date_sub(current_date(),interval 7 day) and date < date_sub(current_date(),interval 0 day)");
+            $yeniquery = $conn -> query("SELECT * FROM siparis");
             while ($siparis = mysqli_fetch_array($yeniquery)) {
               echo "<tr>";
               echo "<td>".$siparis[0]."</td>";
@@ -245,6 +197,10 @@
                   $outnumber += $yeniquery2;
               }
               echo "<td>".$outnumber."</td>";
+              echo "<td>".$siparis[15]."</td>";
+              echo "<td><input class='form-check-input' type='checkbox' value='".$siparis[0]."' id='checkbox".$siparis[0]."' onchange='toggleCheckbox(this)'";
+              if ($siparis[2] == 1) echo "checked" ;
+              echo "></td>";
               echo "</tr>";
             }
             ?>
@@ -256,7 +212,13 @@
   </div>
 </div>
 
-
+    <script>
+      function toggleCheckbox(element)
+ {
+   fetch(`orderstatus.php?siparis_id=${element.value}`)
+   .finally(() => location.reload())
+ }
+    </script>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script><script src="dashboard.js"></script>

@@ -7,9 +7,10 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Anasayfa - Admin Paneli</title>
+    <title>Ürünler - Admin Paneli</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     
 
@@ -132,7 +133,7 @@
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">
+            <a class="nav-link" aria-current="page" href="index.php">
               <span data-feather="home" class="align-text-bottom"></span>
               Anasayfa
             </a>
@@ -150,7 +151,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="items.php">
+            <a class="nav-link active" href="items.php">
               <span data-feather="users" class="align-text-bottom"></span>
               Ürünler
             </a>
@@ -162,93 +163,40 @@
             </a>
           </li>
         </ul>
-<!--
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
-          <span>Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
-    -->
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Son 7 gün cirosu</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-          </div>
-          <!--
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            This week
-          </button>
-    -->
-        </div>
-      </div>
+    <h2 class="mt-2">Ürünler</h2>
 
-      <canvas class="my-4 w-100" id="gunlukCiro" width="900" height="380"></canvas>
-
-      <h2>Son 7 Günlük Kargolanmayı Bekleyen Siparişler</h2>
+      <p>Yeni bisiklet ekle
+        <a href="newbike.php"><span data-feather="plus-square" class="align-text-bottom" style="font-size: 200%;"></span></a>
+      </p>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Satın Alan</th>
-              <th scope="col">Fatura Adı</th>
-              <th scope="col">Adres</th>
-              <th scope="col">Yapılan Ödeme</th>
+              <th scope="col">Ürün Adı</th>
+              <th scope="col">Fiyatı</th>
+              <th scope="col">Düzenle</th>
             </tr>
           </thead>
           <tbody>
             <?php
             include("../baglan.php");
-            $yeniquery = $conn -> query("SELECT * FROM siparis WHERE status = 1 and date > date_sub(current_date(),interval 7 day) and date < date_sub(current_date(),interval 0 day)");
-            while ($siparis = mysqli_fetch_array($yeniquery)) {
-              echo "<tr>";
-              echo "<td>".$siparis[0]."</td>";
-              echo "<td>".$siparis[14]."</td>";
-              echo "<td>".$siparis[3]." ".$siparis[4]."</td>";
-              echo "<td>".$siparis[5]." ".$siparis[6]."</td>";
-              $bisikletid = $conn -> query("SELECT bisiklet_id FROM sepet_detay WHERE sepet_id = ".$siparis[1]) ;
-              $outnumber = 0;
-              while ($bisikletler = mysqli_fetch_array($bisikletid)) {
-                  $yeniquery2 = $conn -> query("SELECT bisiklet_fiyat FROM bisikletler WHERE id = ".$bisikletler[0]) -> fetch_column() ;
-                  $outnumber += $yeniquery2;
-              }
-              echo "<td>".$outnumber."</td>";
-              echo "</tr>";
+            $bisikletlerquery = $conn -> query("SELECT * FROM bisikletler");
+            while ($bisikletler = mysqli_fetch_array($bisikletlerquery)) {
+              ?>
+              <tr>
+              <td><?php echo $bisikletler[0] ?></td>
+              <td><?php if ($bisikletler[2] == NULL) echo "$bisikletler[1]"; else echo "$bisikletler[2]"; echo " $bisikletler[3] $bisikletler[4]"; ?></td>
+              <td><?php echo $bisikletler[5] ?></td>
+              <td><a href="bikeedit.php?bisiklet=<?php echo $bisikletler[0] ?>"><i class="bi bi-pencil-square"></i></a> - <a class="link-danger" href="bikedelete.php?bisiklet=<?php echo $bisikletler[0] ?>"><i class="bi bi-x-square"></i></a></td>
+            </tr>
+              <?php
             }
             ?>
-            
           </tbody>
         </table>
       </div>
