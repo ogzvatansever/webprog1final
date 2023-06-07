@@ -2,11 +2,12 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 31, 2022 at 11:31 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Anamakine: 127.0.0.1
+-- Üretim Zamanı: 07 Haz 2023, 16:26:03
+-- Sunucu sürümü: 10.4.27-MariaDB
+-- PHP Sürümü: 8.2.0
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -18,17 +19,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bikes`
+-- Veritabanı: `bikes`
 --
+DROP DATABASE IF EXISTS `bikes`;
+CREATE DATABASE IF NOT EXISTS `bikes` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bikes`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anasayfa`
+-- Tablo için tablo yapısı `anasayfa`
 --
 
-DROP TABLE IF EXISTS `anasayfa`;
-CREATE TABLE `anasayfa` (
+CREATE TABLE IF NOT EXISTS `anasayfa` (
   `carousel_sira` int(11) DEFAULT NULL,
   `carousel_baslik` varchar(100) DEFAULT NULL,
   `carousel_baslik_2` varchar(100) DEFAULT NULL,
@@ -39,10 +42,10 @@ CREATE TABLE `anasayfa` (
   `form_input_name` varchar(100) DEFAULT NULL,
   `form_input_value` varchar(100) DEFAULT NULL,
   `carousel_active` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `anasayfa`
+-- Tablo döküm verisi `anasayfa`
 --
 
 INSERT INTO `anasayfa` (`carousel_sira`, `carousel_baslik`, `carousel_baslik_2`, `carousel_resim`, `carousel_buton`, `form_action`, `form_input_id`, `form_input_name`, `form_input_value`, `carousel_active`) VALUES
@@ -52,30 +55,62 @@ INSERT INTO `anasayfa` (`carousel_sira`, `carousel_baslik`, `carousel_baslik_2`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bisikletler`
+-- Tablo için tablo yapısı `anasayfa_feature`
 --
 
-DROP TABLE IF EXISTS `bisikletler`;
-CREATE TABLE `bisikletler` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `anasayfa_feature` (
+  `anabaslik` text DEFAULT NULL,
+  `anayazi` text DEFAULT NULL,
+  `butonyazi` varchar(100) DEFAULT NULL,
+  `butonlink` varchar(100) DEFAULT NULL,
+  `simge1` text DEFAULT NULL,
+  `baslik1` text DEFAULT NULL,
+  `yazi1` text DEFAULT NULL,
+  `simge2` text DEFAULT NULL,
+  `baslik2` text DEFAULT NULL,
+  `yazi2` text DEFAULT NULL,
+  `simge3` text DEFAULT NULL,
+  `baslik3` text DEFAULT NULL,
+  `yazi3` text DEFAULT NULL,
+  `simge4` text DEFAULT NULL,
+  `baslik4` text DEFAULT NULL,
+  `yazi4` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `anasayfa_feature`
+--
+
+INSERT INTO `anasayfa_feature` (`anabaslik`, `anayazi`, `butonyazi`, `butonlink`, `simge1`, `baslik1`, `yazi1`, `simge2`, `baslik2`, `yazi2`, `simge3`, `baslik3`, `yazi3`, `simge4`, `baslik4`, `yazi4`) VALUES
+('Sizlere bu hizmeti sunmaktan gurur duyuyoruz!', '15 yılda bu alanın en iyi dükkanı olmaktan gurur duyuyoruz. Başarı hikayemizi hakkında daha fazla bilgi almak için alttaki butona tıklayın.', 'Başarı Hikayemiz!', 'about.php', 'bi bi-bicycle', 'Ürün Çeşitliliği', 'Her kişiye hitap eden bir bisiklet bulunduruyoruz.', 'bi bi-shop', 'Dükkan Güvenirliği', 'Alanındaki en iyi ustalara sahip olmaktan gurur duyuyoruz. Bisikletlerinizi bıraktığınızda gözünüz arkada kalmayacak.', 'bi bi-tools', 'Bakım Hizmeti', 'En yakın bayimize giderek bakım randevunuzu oluşturabilirsiniz.', 'bi bi-airplane', 'Kargo Hizmeti', '1 İş günü içinde Türkiye içi her yere kargo yapıyoruz. (Yurt dışı alımları için süre garantisi veremiyoruz.)');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `bisikletler`
+--
+
+CREATE TABLE IF NOT EXISTS `bisikletler` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `bisiklet_marka` varchar(100) NOT NULL,
   `bisiklet_marka_2` varchar(100) DEFAULT NULL,
   `bisiklet_model` varchar(100) NOT NULL,
   `bisiklet_model_2` varchar(100) DEFAULT NULL,
-  `bisiklet_fiyat` int(11) NOT NULL,
+  `bisiklet_fiyat` int(11) NOT NULL DEFAULT 0,
   `bisiklet_renk` varchar(100) NOT NULL,
   `bisiklet_tur` varchar(100) DEFAULT NULL,
   `bisiklet_tarz` varchar(100) DEFAULT NULL,
   `bisiklet_aciklama` varchar(255) DEFAULT NULL,
-  `bisiklet_diger` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `bisiklet_diger` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `bisikletler`
+-- Tablo döküm verisi `bisikletler`
 --
 
 INSERT INTO `bisikletler` (`id`, `bisiklet_marka`, `bisiklet_marka_2`, `bisiklet_model`, `bisiklet_model_2`, `bisiklet_fiyat`, `bisiklet_renk`, `bisiklet_tur`, `bisiklet_tarz`, `bisiklet_aciklama`, `bisiklet_diger`) VALUES
-(1, 'Specialized', 'S-Works', 'Epic', '', 12000, 'SATIN CARBON / COLOR RUN BLUE MURANO PEARL / GLOSS CHROME FOIL LOGOS', 'MTB', 'Cross Country', NULL, NULL),
+(1, 'Specialized', 'S-Works', 'Epic', '', 12000, 'SATIN CARBON / COLOR RUN BLUE MURANO PEARL / GLOSS CHROME FOIL LOGOS', 'MTB', 'Cross Country', '', ''),
 (2, 'Specialized', NULL, 'Epic EVO', 'Pro', 8900, 'Gloss Birch/Bronze Pearl/Pearl', 'MTB', 'Cross Country', NULL, NULL),
 (3, 'Specialized', NULL, 'Rockhopper', '', 650, 'SATIN OLIVE GREEN / BLACK', 'MTB', 'Cross Country', NULL, NULL),
 (4, 'Specialized', NULL, 'Rockhopper', 'Sport', 750, 'GLOSS BLAZE / ICE PAPAYA', 'MTB', 'Cross Country', NULL, NULL),
@@ -94,17 +129,17 @@ INSERT INTO `bisikletler` (`id`, `bisiklet_marka`, `bisiklet_marka_2`, `bisiklet
 (17, 'Specialized', NULL, 'Diverge STR', 'Pro', 9500, 'Satin Blaze/Violet Ghost Pearl Fade', 'ROAD', 'Gravel', NULL, NULL),
 (18, 'Specialized', NULL, 'Tarmac SL7', 'Expert', 8300, 'Gloss Carbon/Oil Tint/Forest Green', 'ROAD', 'Performance', NULL, NULL),
 (19, 'Specialized', NULL, 'Roubaix', 'Expert', 8000, 'Teal Tint/ Ice Papaya/ Black Reflective', 'ROAD', 'Performance', NULL, NULL),
-(20, 'Specialized', NULL, 'Aethos', 'Expert', 8000, 'Pine Green / White', 'ROAD', 'Performance', NULL, NULL);
+(20, 'Specialized', NULL, 'Aethos', 'Expert', 8000, 'Pine Green / White', 'ROAD', 'Performance', NULL, NULL),
+(27, 'Salcano', '', 'HG 750', '', 3, 'Yeşil', 'MTB', 'Cross Country', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bisiklet_detay`
+-- Tablo için tablo yapısı `bisiklet_detay`
 --
 
-DROP TABLE IF EXISTS `bisiklet_detay`;
-CREATE TABLE `bisiklet_detay` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `bisiklet_detay` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `bisiklet_id` int(11) NOT NULL,
   `kadro` varchar(500) DEFAULT NULL,
   `sele_kelepcesi` varchar(255) DEFAULT NULL,
@@ -132,15 +167,17 @@ CREATE TABLE `bisiklet_detay` (
   `jant_teli` varchar(255) DEFAULT NULL,
   `on_lastik` varchar(255) DEFAULT NULL,
   `arka_lastik` varchar(255) DEFAULT NULL,
-  `ic_lastik` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ic_lastik` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `bisiklet_id` (`bisiklet_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `bisiklet_detay`
+-- Tablo döküm verisi `bisiklet_detay`
 --
 
 INSERT INTO `bisiklet_detay` (`id`, `bisiklet_id`, `kadro`, `sele_kelepcesi`, `aksesuarlar`, `arka_suspansiyon`, `masa`, `gidon_bogazi`, `gidon`, `elcik`, `sele`, `sele_borusu`, `on_fren`, `arka_fren`, `arka_aktarici`, `on_aktarici`, `vites_kollari`, `ruble`, `zincir`, `aynakol`, `aynakol_dislisi`, `orta_gobek`, `jantlar`, `on_gobek`, `arka_gobek`, `jant_teli`, `on_lastik`, `arka_lastik`, `ic_lastik`) VALUES
-(1, 1, 'S-Works FACT 12m Carbon, Progressive XC Race Geometry, Rider-First Engineered™, threaded BB, 12x148mm rear spacing, internal cable routing, 100mm of travel', 'Specialized Alloy 34.9, Titanium Bolt', NULL, 'RockShox-Specialized BRAIN, Rx XC Tune, 5 Position Platform Adjust, Rebound Adjust, Integraded Extension, 265x52.5mm', 'RockShox SID SL ULTIMATE BRAIN, Top-Adjust Brain damper, Debon Air, 15x110mm, 44mm offset, 100mm Travel', 'S-Works SL, alloy, titanium bolts, 6-degree rise', 'S-Works Carbon XC Mini Rise, 6-degree upsweep, 8-degree backsweep, 10mm rise, 760mm, 31.8mm', 'Specialized Trail Grips', 'Body Geometry S-Works Power, carbon fiber rails, carbon fiber base', 'RockShox Reverb AXS, 30.9, 1X remote, (SM:100mm, M: 125mm, L-XL: 150mm travel)', 'SRAM Level Ultimate, 2-piston caliper, hydraulic disc', 'SRAM Level Ultimate, 2-piston caliper, hydraulic disc', 'SRAM XX1 Eagle AXS', NULL, 'SRAM Eagle AXS Rocker Paddle', 'Sram XG-1299, 12-Speed, 10-52t', 'SRAM XX1 Eagle', 'Quarq XX1 Powermeter, DUB, 170/175mm, 34t', '34T', 'SRAM DUB, BSA 73mm, Threaded', 'Roval Control SL, Carbon offset design, 29mm internal width, 4mm hook width, Tubeless ready, 24h', 'Roval Control SL, DT Swiss Internals, Ceramic Bearings, 6-bolt, 15mm thru-axle, 110mm spacing, Torque caps, 24h straight pull t-head', 'Roval Control SL, DT Swiss Internals, Ceramic Bearings, 6-bolt, 15mm thru-axle, 110mm spacing, Torque caps, 24h straight pull t-head', 'DT Swiss Aerolite T-head', 'Specialized Fast Trak, Control Casing, T5 Compound, 29x2.35', 'RENEGADE CONTROL 2BR, 29x2.35, T5', 'Specialized Turbo Tube'),
+(1, 1, 'S-Works FACT 13m Carbon, Progressive XC Race Geometry, Rider-First Engineered™, threaded BB, 12x148mm rear spacing, internal cable routing, 100mm of travel', 'Specialized Alloy 34.9, Titanium Bolt', '', 'RockShox-Specialized BRAIN, Rx XC Tune, 5 Position Platform Adjust, Rebound Adjust, Integraded Extension, 265x52.5mm', 'RockShox SID SL ULTIMATE BRAIN, Top-Adjust Brain damper, Debon Air, 15x110mm, 44mm offset, 100mm Travel', 'S-Works SL, alloy, titanium bolts, 6-degree rise', 'S-Works Carbon XC Mini Rise, 6-degree upsweep, 8-degree backsweep, 10mm rise, 760mm, 31.8mm', 'Specialized Trail Grips', 'Body Geometry S-Works Power, carbon fiber rails, carbon fiber base', 'RockShox Reverb AXS, 30.9, 1X remote, (SM:100mm, M: 125mm, L-XL: 150mm travel)', 'SRAM Level Ultimate, 2-piston caliper, hydraulic disc', 'SRAM Level Ultimate, 2-piston caliper, hydraulic disc', 'SRAM XX1 Eagle AXS', '', 'SRAM Eagle AXS Rocker Paddle', 'Sram XG-1299, 12-Speed, 10-52t', 'SRAM XX1 Eagle', 'Quarq XX1 Powermeter, DUB, 170/175mm, 34t', '34T', 'SRAM DUB, BSA 73mm, Threaded', 'Roval Control SL, Carbon offset design, 29mm internal width, 4mm hook width, Tubeless ready, 24h', 'Roval Control SL, DT Swiss Internals, Ceramic Bearings, 6-bolt, 15mm thru-axle, 110mm spacing, Torque caps, 24h straight pull t-head', 'Roval Control SL, DT Swiss Internals, Ceramic Bearings, 6-bolt, 15mm thru-axle, 110mm spacing, Torque caps, 24h straight pull t-head', 'DT Swiss Aerolite T-head', 'Specialized Fast Trak, Control Casing, T5 Compound, 29x2.35', 'RENEGADE CONTROL 2BR, 29x2.35, T5', 'Specialized Turbo Tube'),
 (2, 2, 'FACT 11m Full Carbon, Progressive XC Geometry, Rider-First Engineered™, threaded BB, 12x148mm rear spacing, internal cable routing, 110mm of travel', 'Specialized Alloy, 34.9mm', NULL, 'FOX FLOAT DPS Factory, Rx XC Tune, EVOL Air sleeve, Kashima Coat, 3-position adjustment w/ Open Mode Adjustment, 190x40mm', 'FOX FLOAT 34 Factory, Fit4 damper, Kashima Coating, 15x110mm, 44mm offset, 120mm of travel', 'Race Face Turbine R, 60mm, 35mm clamp', 'Roval Control Rise Carbon Handlebar, 760mm wide, 20mm rise, 35mm', 'Specialized Trail Grips', 'Body Geometry Power Expert, titanium rails', 'Fox Transfer Factory, 30.9, 1X remote, (S:125mm, M/L: 150mm, XL: 175mm)\r\n\r\n', 'SRAM G2 RSC, 4-piston caliper, hydraulic disc, 180mm rotor\r\n\r\n', 'SRAM G2 RSC, 4-piston caliper, hydraulic disc, 180mm rotor\r\n\r\n', 'SRAM X01 Eagle AXS\r\n\r\n', NULL, 'SRAM Eagle AXS Rocker Paddle\r\n\r\n', 'SRAM XG-1295 Eagle, 10-52t\r\n\r\n', 'SRAX X01 Eagle, 12-speed\r\n\r\n', 'SRAM X1 Carbon, DUB, S:170mm, M-XL: 175mm\r\n\r\n', '32T', 'SRAM DUB, BSA 73mm, Threaded\r\n\r\n', 'Roval Control, Carbon offset design, 29mm internal width, 4mm hook width, Tubeless ready, 28h', 'DT Swiss 350, 6-bolt, 15mm Thru-axle, 110mm spacing, 28h straight -pull', 'DT Swiss 350 straight-pull, 6-bolt, DT Swiss Ratchet, 12x148mm thru axle, XD freehub body, 28h straight-pull', 'DT Swiss Comp Race', 'Specialized Ground Control, GRID Casing, T7 Compound, 29x2.35', 'Specialized Ground Control, GRID Casing, T7 Compound, 29x2.35', 'Specialized Turbo Tube'),
 (3, 3, 'Specialized A1 premium butted alloy, zero-stack head tube, internal cable routing, 135x9mm forged dropouts, chainstay-mounted disc brake, replaceable alloy derailleur hanger, stealth rack mounts, dropper post compatible', 'Alloy, quick release, 34.9', NULL, NULL, 'SR Suntour XCE 29, 28mm stanchions, Rx Tune, coil spring, QR, 90/100mm travel (size-specific), 46mm offset', '3D-forged alloy, 31.8mm, 7-degree rise', 'Stout Mini Rise, alloy, 9-degree backsweep, 15mm rise, 31.8mm', 'Specialized MTB Grip, lock-on', 'Bridge Sport, Steel rails, 155/143mm\r\n\r\n', 'Alloy, 2-bolt clamp, 30.9mm\r\n\r\n', 'Radius CX7, mechanical disc, 160mm', 'Radius CX7, mechanical disc, 160mm', 'Microshift Mezzo, 8spd\r\n\r\n', 'microSHIFT FD-M462, 2-speed\r\n\r\n', 'microSHIFT, TS39-8R, 2x8-speed', 'SunRace, 8-speed, 11-34t', 'KMC X8 EPT, anti-rust coating, 8-speed w/ reusable Missing Link™', 'Stout 2x, forged alloy', NULL, 'Square-tapered, 73mm, internal bearings, 122.5mm spindle', 'Specialized alloy, disc only, double-wall, 25mm inner width, 32h', 'Formula 6-Bolt, disc, 100x9mm spacing, quick-release, 32H\r\n\r\n', 'Formula SP-2125, 6-Bolt freehub, disc, 135x9mm spacing, quick-release', 'Stainless, 14g', 'Fast Trak Sport, 29x2.35\"', 'Fast Trak Sport, 29x2.35\"', 'Schrader, 40mm valve'),
 (4, 4, 'Specialized A1 premium butted alloy, zero-stack head tube, internal cable routing, 135x9mm forged dropouts, chainstay-mounted disc brake, replaceable alloy derailleur hanger, stealth rack mounts, dropper post compatible', 'Alloy, quick release, 34.9', NULL, NULL, 'SR Suntour XCM 29, 30mm stanchions, Rx Tune, coil spring, QR, 90/100mm travel (size-specific), 42mm offset', '3D-forged alloy, 31.8mm, 7-degree rise', 'Stout Mini Rise, alloy, 9-degree backsweep, 15mm rise, 31.8mm', 'Specialized MTB Grip, lock-on', 'Bridge Sport, Steel rails, 155/143mm', 'Alloy, 2-bolt clamp, 30.9mm', 'Shimano BR-MT200, hydraulic disc, 180mm', 'Shimano BR-MT200, hydraulic disc, 180mm', 'Microshift RD-M46L, 9spd', 'microSHIFT FD-M462, 2-speed', 'Microshift, SL-M859R, 2x9', 'SunRace, 9-Speed, 11-36t', 'KMC X9EPT, 9-speed, anti-corrosion coating w/ reusable Missing Link™', 'Stout 2x, forged alloy', NULL, 'Square-tapered, 73mm, internal bearings, 122.5mm spindle', 'Specialized alloy, disc only, double-wall, 25mm inner width, 32h', 'Formula 6-Bolt, disc, 100x9mm spacing, quick-release, 32H', 'Formula SP-2125, 6-Bolt freehub, disc, 135x9mm spacing, quick-release', 'Stainless, 14g', 'Fast Trak Sport, 29x2.35\"', 'Fast Trak Sport, 29x2.35\"', 'Schrader, 40mm valve'),
@@ -159,94 +196,227 @@ INSERT INTO `bisiklet_detay` (`id`, `bisiklet_id`, `kadro`, `sele_kelepcesi`, `a
 (17, 17, 'Diverge FACT 11r carbon frameset with front and rear Future Shock suspension, SWAT™ Door integration, threaded BB, internal routing, 12x142mm thru-axle, flat-mount disc', 'Specialized Alloy, 33.3mm', NULL, NULL, 'Future Shock 2.0 w/ Damper, Smooth Boot, FACT carbon, 12x100 mm thru-axle, flat-mount', 'Future Stem, Pro', 'Roval Terra, carbon, 103mm drop x 70mm reach x 12º flare', 'Supacaz Super Sticky Kush', 'Body Geometry Power Pro, hollow titanium rails', 'S-Works Carbon Seat Post, 20mm Offset', 'SRAM Force, hydraulic disc, 160mm Paceline rotor', 'SRAM Force, hydraulic disc, 160mm Paceline rotor', 'SRAM X01 Eagle AXS', NULL, 'SRAM Force eTap AXS', 'SRAM XG-1275 Eagle, 12-speed, 10-50t', 'SRAM X01 Eagle, 12-speed', 'SRAM Force 1x', '40T', 'SRAM DUB BSA 68', 'Roval Terra CL, 25mm internal width, 32mm depth, 24h, Tubeless ready, DT for Roval 350 hub, Centerlock disc, DT Swiss Competition Race spokes', 'Roval Terra CL, 25mm internal width, 32mm depth, 24h, Tubeless ready, DT for Roval 350 hub, Centerlock disc, DT Swiss Competition Race spokes', 'Roval Terra CL, 25mm internal width, 32mm depth, 24h, Tubeless ready, DT for Roval 350 hub, Centerlock disc, DT Swiss Competition Race spokes', NULL, 'Tracer Pro 2BR, 700x42', 'Tracer Pro 2BR, 700x42', '700x28/38mm, 48mm Presta valve'),
 (18, 18, 'Tarmac SL7 FACT 10r Carbon, Rider First Engineered™, Win Tunnel Engineered, Clean Routing, Threaded BB, 12x142mm thru-axle, flat-mount disc', 'Tarmac integrated wedge', NULL, NULL, 'FACT Carbon, 12x100mm thru-axle, flat-mount disc', 'Tarmac integrated stem, 6-degree', 'Specialized Expert Shallow Drop, alloy, 125mm drop x 75mm reach', 'Supacaz Super Sticky Kush', 'Body Geometry Power Expert, titanium rails', '2021 S-Works Tarmac Carbon seat post, FACT Carbon, 20mm offset', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra R8170, hydraulic disc', 'Di2 Shimano Ultegra R8150, 12-speed', 'Di2 Shimano Ultegra R8150, braze-on', 'Di2 Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra, 12-speed, 11-30t', 'Shimano Ultegra, 12-speed', 'Shimano Ultegra R8100', '52/36T', 'Shimano Threaded BSA BB', 'Roval C38, 21mm internal width carbon rim', 'Roval C38, 21mm internal width carbon rim', 'Roval C38, 21mm internal width carbon rim', NULL, 'S-Works Turbo, 120 TPI, folding bead, BlackBelt protection, 700x26mm', 'S-Works Turbo, 120 TPI, folding bead, BlackBelt protection, 700x26mm', 'Turbo Ultralight, 48mm Presta valve'),
 (19, 19, 'FACT 10R, Rider First Engineered™ (RFE), FreeFoil Shape Library tubes, threaded BB, 12x142mm thru-axle, flat-mount disc', 'Hidden drop clamp', NULL, NULL, 'Future Shock 2.0 w/ Smooth Boot, 12x100mm thru-axle, flat-mount disc', 'Future Stem, Pro', 'Specialized Hover Expert, Alloy, 125mm Drop, 75mm Reach w/Di2 Hole', 'Supacaz Super Sticky Kush', 'Body Geometry Power Expert, titanium rails', 'S-Works Pave', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra R8150, 12-speed', 'Shimano Ultegra R8150, braze-on', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra, 12-speed, 11-34t', 'Shimano Ultegra, 12-speed', 'Shimano Ultegra R8100', '50/34T', 'Shimano Threaded BSA BB', 'Roval C38, 21mm internal width carbon rim', 'Roval C38, 21mm internal width carbon rim', 'Roval C38, 21mm internal width carbon rim', NULL, 'Specialized Turbo Pro, 700x30mm', 'Specialized Turbo Pro, 700x30mm', 'Presta, 48mm valve'),
-(20, 20, 'Aethos FACT 10R Carbon, Rider First Engineered™, Threaded BB, 12x142mm thru-axle, flat-mount disc\r\n\r\n', 'Specialized Alloy, 30mm', NULL, NULL, 'FACT Carbon, 12x100mm thru-axle, flat-mount disc', 'Specialized Pro SL, alloy, 4-bolt', 'Specialized Expert Shallow Drop, alloy, 125mm drop x 75mm reach', 'Supacaz Super Sticky Kush', 'Body Geometry Power Expert, titanium rails', 'Roval Alpinist Carbon Seatpost', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra R8150, 12-speed', 'Shimano Ultegra R8150, braze-on', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra, 12-speed, 11-30t', 'Shimano XT M8100, 12-speed w/ quick link', 'Shimano Ultegra R8100', '52/36T', 'Shimano Threaded BSA BB', 'Roval C38, 21mm internal width carbon rim', 'Roval C38, 21mm internal width carbon rim', 'Roval C38, 21mm internal width carbon rim', NULL, 'S-Works Turbo, 120 TPI, folding bead, BlackBelt protection, 700x26mm', 'S-Works Turbo, 120 TPI, folding bead, BlackBelt protection, 700x26mm', 'Turbo Ultralight, 48mm Presta valve');
+(20, 20, 'Aethos FACT 10R Carbon, Rider First Engineered™, Threaded BB, 12x142mm thru-axle, flat-mount disc\r\n\r\n', 'Specialized Alloy, 30mm', NULL, NULL, 'FACT Carbon, 12x100mm thru-axle, flat-mount disc', 'Specialized Pro SL, alloy, 4-bolt', 'Specialized Expert Shallow Drop, alloy, 125mm drop x 75mm reach', 'Supacaz Super Sticky Kush', 'Body Geometry Power Expert, titanium rails', 'Roval Alpinist Carbon Seatpost', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra R8150, 12-speed', 'Shimano Ultegra R8150, braze-on', 'Shimano Ultegra R8170, hydraulic disc', 'Shimano Ultegra, 12-speed, 11-30t', 'Shimano XT M8100, 12-speed w/ quick link', 'Shimano Ultegra R8100', '52/36T', 'Shimano Threaded BSA BB', 'Roval C38, 21mm internal width carbon rim', 'Roval C38, 21mm internal width carbon rim', 'Roval C38, 21mm internal width carbon rim', NULL, 'S-Works Turbo, 120 TPI, folding bead, BlackBelt protection, 700x26mm', 'S-Works Turbo, 120 TPI, folding bead, BlackBelt protection, 700x26mm', 'Turbo Ultralight, 48mm Presta valve'),
+(23, 27, 'Salcano Alüminyum', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kullaniciyorumlari`
+-- Tablo için tablo yapısı `hakkimizda`
 --
 
-DROP TABLE IF EXISTS `kullaniciyorumlari`;
-CREATE TABLE `kullaniciyorumlari` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hakkimizda` (
+  `baslik1` text DEFAULT NULL,
+  `yazi1` text DEFAULT NULL,
+  `resim1` varchar(100) DEFAULT NULL,
+  `baslik2` text DEFAULT NULL,
+  `yazi2` text DEFAULT NULL,
+  `resim2` varchar(100) DEFAULT NULL,
+  `baslik3` text DEFAULT NULL,
+  `yazi3` text DEFAULT NULL,
+  `resim3` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `hakkimizda`
+--
+
+INSERT INTO `hakkimizda` (`baslik1`, `yazi1`, `resim1`, `baslik2`, `yazi2`, `resim2`, `baslik3`, `yazi3`, `resim3`) VALUES
+('First featurette heading. It’ll blow your mind.', 'Some great placeholder content for the first featurette here. Imagine some exciting prose here.', 'https://hips.hearstapps.com/hmg-prod/images/bke060120colquiddity-001-1594841814.jpg?resize=1200:*', 'Oh yeah, it’s that good. See for yourself.', 'Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.', 'https://hips.hearstapps.com/hmg-prod/images/bke060120colquiddity-001-1594841814.jpg?resize=1200:*', 'And lastly, this one. Checkmate.', 'And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.', 'https://hips.hearstapps.com/hmg-prod/images/bke060120colquiddity-001-1594841814.jpg?resize=1200:*');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `kullaniciyorumlari`
+--
+
+CREATE TABLE IF NOT EXISTS `kullaniciyorumlari` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `bisiklet_id` int(11) NOT NULL,
   `isim` varchar(100) DEFAULT NULL,
   `eposta` varchar(100) DEFAULT NULL,
   `puan` int(11) DEFAULT NULL,
   `yorum_baslik` varchar(100) DEFAULT NULL,
-  `yorum` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `yorum` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `kullaniciyorumlari_FK` (`bisiklet_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kullaniciyorumlari`
+-- Tablo döküm verisi `kullaniciyorumlari`
 --
 
 INSERT INTO `kullaniciyorumlari` (`id`, `bisiklet_id`, `isim`, `eposta`, `puan`, `yorum_baslik`, `yorum`) VALUES
-(11, 1, 'Oğuz', 'ogzvatansever@gmail.com', 5, 'Mükemmel', 'Alınabilecek en iyi bisikletlerden biri. Üzerindeki parçaların kalitesini kullanırken hissediyorsunuz. Ücreti yüksek olmasına rağmen Dünya XC kupasında kullanılan bir bisiklet olduğunu da unutmamak lazım.'),
-(15, 1, 'Ahmet', 'ahmet@eposta.com', 4, 'Lorem ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod elit quis lacus egestas, a scelerisque enim dapibus. Donec tincidunt nibh nec sem condimentum, vitae.');
+(11, 1, 'Oğuz', 'ogzvatansever@gmail.com', 5, 'Mükemmel', 'Alınabilecek en iyi bisikletlerden biri. Üzerindeki parçaların kalitesini kullanırken hissediyorsunuz. Ücreti yüksek olmasına rağmen Dünya XC kupasında kullanılan bir bisiklet olduğunu da unutmamak lazım.');
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Tablo için tablo yapısı `sepet`
+--
+
+CREATE TABLE IF NOT EXISTS `sepet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `user` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `sepet`
+--
+
+INSERT INTO `sepet` (`id`, `status`, `user`) VALUES
+(1, 1, NULL),
+(11, 1, NULL),
+(12, 1, NULL),
+(13, 1, NULL),
+(14, 1, NULL),
+(15, 1, NULL),
+(16, 0, NULL),
+(17, 0, NULL),
+(18, 0, ''),
+(19, 1, 'test@gmail.com'),
+(20, 1, 'test1@gmail.com'),
+(21, 1, 'test1@gmail.com'),
+(22, 1, 'test1@gmail.com'),
+(23, 1, 'test1@gmail.com'),
+(24, 1, 'test1@gmail.com'),
+(25, 1, 'test@gmail.com'),
+(26, 1, 'test1@gmail.com'),
+(27, 1, 'test1@gmail.com'),
+(28, 0, 'test2@gmail.com'),
+(29, 0, 'test1@gmail.com'),
+(30, 1, 'test@gmail.com'),
+(31, 0, 'test@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `sepet_detay`
+--
+
+CREATE TABLE IF NOT EXISTS `sepet_detay` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sepet_id` int(11) NOT NULL,
+  `bisiklet_id` varchar(100) NOT NULL,
+  `bisiklet_beden` varchar(100) NOT NULL,
+  `miktar` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `sepet_detay`
+--
+
+INSERT INTO `sepet_detay` (`id`, `sepet_id`, `bisiklet_id`, `bisiklet_beden`, `miktar`) VALUES
+(36, 1, '1', 'L', 1),
+(37, 1, '14', 'L', 1),
+(42, 11, '15', 'M', 1),
+(43, 12, '3', 'M', 1),
+(44, 13, '11', 'S', 3),
+(45, 13, '14', 'XL', 4),
+(46, 14, '9', 'M', 1),
+(47, 15, '8', 'S', 1),
+(49, 19, '14', 'M', 1),
+(50, 20, '8', 'M', 1),
+(51, 21, '14', 'M', 1),
+(52, 26, '8', 'M', 1),
+(53, 28, '4', 'M', 1),
+(54, 27, '16', 'M', 1),
+(55, 25, '16', 'L', 1),
+(57, 30, '2', 'M', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `siparis`
+--
+
+CREATE TABLE IF NOT EXISTS `siparis` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sepet_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `buyer_fname` varchar(100) DEFAULT NULL,
+  `buyer_sname` varchar(100) DEFAULT NULL,
+  `buyer_adress` varchar(255) DEFAULT NULL,
+  `buyer_adress2` varchar(255) DEFAULT NULL,
+  `buyer_country` varchar(100) DEFAULT NULL,
+  `buyer_city` varchar(100) DEFAULT NULL,
+  `buyer_zip` varchar(100) DEFAULT NULL,
+  `buyer_cc_owner` varchar(100) DEFAULT NULL,
+  `buyer_cc_number` varchar(100) DEFAULT NULL,
+  `buyer_cc_expiry` int(11) DEFAULT NULL,
+  `buyer_cc_cvv` int(11) DEFAULT NULL,
+  `buyer` varchar(100) NOT NULL,
+  `date` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `siparis`
+--
+
+INSERT INTO `siparis` (`id`, `sepet_id`, `status`, `buyer_fname`, `buyer_sname`, `buyer_adress`, `buyer_adress2`, `buyer_country`, `buyer_city`, `buyer_zip`, `buyer_cc_owner`, `buyer_cc_number`, `buyer_cc_expiry`, `buyer_cc_cvv`, `buyer`, `date`) VALUES
+(18, 1, 1, 'Oğuz', 'Vatansever', 'Kuzey Mahallesi Zümrüt Sokak', '8/3', 'Türkiye', 'Kocaeli', '41780', '1', '1', 1, 1, 'test@gmail.com', '2023-05-24 14:21:20'),
+(19, 11, 0, 'Oğuz', 'Vatansever', 'Kuzey Mahallesi Zümrüt Sokak', '8/3', 'Türkiye', 'Kocaeli', '41780', '2', '2', 2, 2, '', '2023-05-24 14:21:20'),
+(20, 12, 1, 'Oğuz', 'Vatansever', 'Kuzey Mahallesi Zümrüt Sokak', '8/3', 'Türkiye', 'Kocaeli', '41780', '3', '3', 3, 3, 'test@gmail.com', '2023-05-24 14:21:20'),
+(21, 13, 1, 'Oğuz', 'Vatansever', 'Kuzey Mahallesi Zümrüt Sokak', '8/3', 'Türkiye', 'Kocaeli', '41780', '1', '1', 1, 1, '', '2023-05-26 14:21:20'),
+(22, 14, 1, 'Oğuz', 'Vatansever', 'Kuzey Mahallesi Zümrüt Sokak', '8/3', 'Türkiye', 'Kocaeli', '41780', '1', '1', 1, 1, '', '2023-05-27 14:21:20'),
+(23, 15, 0, 'Oğuz', 'Vatansever', 'Kuzey Mahallesi Zümrüt Sokak', '8/3', 'Türkiye', 'Kocaeli', '41780', '1', '1', 1, 1, '', '2023-05-28 14:21:20'),
+(24, 20, 0, 'Ahmet', 'Süleyha', '1234 Hilal Sk', '', 'Türkiye', 'Kocaeli', '41780', 'Ahmet Süleyha', '1', 4, 4, '', '2023-05-25 14:21:20'),
+(25, 21, 0, 'Jale', 'Sürüç', '1234 Hilal sk', '1', 'Türkiye', 'Kocaeli', '41780', '1', '1', 1, 1, '', '2023-05-25 14:21:20'),
+(28, 19, 0, '2', '2', '2', '2', 'Türkiye', 'Kocaeli', '2', '2', '2', 2, 2, 'test@gmail.com', '2023-05-29 14:21:20'),
+(30, 26, 1, '3', '3', '3', '3', 'Türkiye', 'Kocaeli', '3', '3', '3', 3, 3, 'test1@gmail.com', '2023-05-29 14:21:20'),
+(31, 27, 0, '4', '4', '4', '4', 'Türkiye', 'Kocaeli', '4', '4', '4', 4, 4, 'test1@gmail.com', '2023-05-29 14:21:20'),
+(32, 25, 0, 'Oğuz', 'Vatansever', 'Kuzey Mahallesi Zümrüt Sokak', '8/3', 'Türkiye', 'Kocaeli', '41780', '6', '6', 6, 6, 'test@gmail.com', '2023-05-30 08:53:43'),
+(33, 30, 0, 'Oğuz', 'Vatansever', 'Kuzey Mahallesi Zümrüt Sokak', '8/3', 'Türkiye', 'Kocaeli', '41780', '4', '4', 4, 4, 'test@gmail.com', '2023-05-31 12:10:03');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `uyeler`
+--
+
+CREATE TABLE IF NOT EXISTS `uyeler` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(100) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `adress1` varchar(100) DEFAULT NULL,
+  `adress2` varchar(100) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `zip` varchar(100) DEFAULT NULL,
+  `level` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`mail`),
+  UNIQUE KEY `uyeler_un` (`id`,`mail`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `uyeler`
+--
+
+INSERT INTO `uyeler` (`id`, `mail`, `password`, `adress1`, `adress2`, `country`, `city`, `zip`, `level`) VALUES
+(4, 'test1@gmail.com', '$2y$10$F2PRIM3xeZ1jx2/Gh7a64.MtrhEKK8jWSFiFKeCWQ7GG57XDuEBWq', 'Jale sokak', 'Cüneyt Mahallesi', 'Türkiye', 'Kocaeli', '41780', 0),
+(5, 'test2@gmail.com', '$2y$10$BbB8M6Lxgsj9RBzYDcg5NOk3h90C1obaN5SO0yGf3MgIKgI2uiuLC', '2', '2', 'Türkiye', 'Kocaeli', '41780', 0),
+(1, 'test@gmail.com', '$2y$10$MaYoPT0gouizGZFTyiq5VuIT/O7HYoOZqiZlX34Bthx4qY4DUr9Sm', '', '', '', '', '', 1);
+
+--
+-- Dökümü yapılmış tablolar için kısıtlamalar
 --
 
 --
--- Indexes for table `bisikletler`
---
-ALTER TABLE `bisikletler`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `bisiklet_detay`
---
-ALTER TABLE `bisiklet_detay`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `bisiklet_id` (`bisiklet_id`);
-
---
--- Indexes for table `kullaniciyorumlari`
---
-ALTER TABLE `kullaniciyorumlari`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `kullaniciyorumlari_FK` (`bisiklet_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `bisikletler`
---
-ALTER TABLE `bisikletler`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `bisiklet_detay`
---
-ALTER TABLE `bisiklet_detay`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `kullaniciyorumlari`
---
-ALTER TABLE `kullaniciyorumlari`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `bisiklet_detay`
+-- Tablo kısıtlamaları `bisiklet_detay`
 --
 ALTER TABLE `bisiklet_detay`
   ADD CONSTRAINT `bisiklet_detay_ibfk_1` FOREIGN KEY (`bisiklet_id`) REFERENCES `bisikletler` (`id`);
 
 --
--- Constraints for table `kullaniciyorumlari`
+-- Tablo kısıtlamaları `kullaniciyorumlari`
 --
 ALTER TABLE `kullaniciyorumlari`
   ADD CONSTRAINT `kullaniciyorumlari_FK` FOREIGN KEY (`bisiklet_id`) REFERENCES `bisikletler` (`id`);
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
