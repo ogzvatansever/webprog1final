@@ -162,6 +162,12 @@
               Anasayfa Verileri
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="a2edit.php">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Hakkımızda
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

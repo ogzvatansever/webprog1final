@@ -161,12 +161,18 @@
               Anasayfa Verileri
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="a2edit.php">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Hakkımızda
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <h2 class="mt-2">Bisikleti Düzenle</h2>
+    <h2 class="mt-2">Anasayfa Verilerini Düzenle</h2>
       <?php
       include("../baglan.php");
       $anasayfa = $conn -> query("SELECT * FROM anasayfa_feature") -> fetch_array();

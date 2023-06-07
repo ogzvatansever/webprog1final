@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Anasayfa Verileri - Admin Paneli</title>
+    <title>Hakkımızda - Admin Paneli</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
 
@@ -156,9 +156,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link" href="aedit.php">
               <span data-feather="bar-chart-2" class="align-text-bottom"></span>
               Anasayfa Verileri
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Hakkımızda
             </a>
           </li>
         </ul>
@@ -166,7 +172,7 @@
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <h2 class="mt-2">Bisikleti Düzenle</h2>
+    <h2 class="mt-2">Hakkımızda Sayfasını Düzenle</h2>
       <?php
       include("../baglan.php");
       $hakkinda = $conn -> query("SELECT * FROM hakkimizda") -> fetch_array();

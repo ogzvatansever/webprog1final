@@ -87,7 +87,7 @@ $feature = $conn -> query("SELECT * FROM anasayfa_feature") -> fetch_array();
         <div class="row row-cols-1 row-cols-sm-2 g-4">
           <div class="col d-flex flex-column gap-2">
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-                <?php echo $feature[4] ?>
+              <i class="<?php echo $feature[4] ?>" width="1em" height="1em"></i>
             </div>
             <h4 class="fw-semibold mb-0"><?php echo $feature[5] ?></h4>
             <p class="text-body-secondary"><?php echo $feature[6] ?></p>
@@ -95,7 +95,7 @@ $feature = $conn -> query("SELECT * FROM anasayfa_feature") -> fetch_array();
 
           <div class="col d-flex flex-column gap-2">
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-                <?php echo $feature[7] ?>
+              <i class="<?php echo $feature[7] ?>" width="1em" height="1em"></i>
             </div>
             <h4 class="fw-semibold mb-0"><?php echo $feature[8] ?></h4>
             <p class="text-body-secondary"><?php echo $feature[9] ?></p>
@@ -103,7 +103,7 @@ $feature = $conn -> query("SELECT * FROM anasayfa_feature") -> fetch_array();
 
           <div class="col d-flex flex-column gap-2">
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-                <?php echo $feature[10] ?>
+              <i class="<?php echo $feature[10] ?>" width="1em" height="1em"></i>
             </div>
             <h4 class="fw-semibold mb-0"><?php echo $feature[11] ?></h4>
             <p class="text-body-secondary"><?php echo $feature[12] ?></p>
@@ -111,7 +111,7 @@ $feature = $conn -> query("SELECT * FROM anasayfa_feature") -> fetch_array();
 
           <div class="col d-flex flex-column gap-2">
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-                <?php echo $feature[13] ?>
+              <i class="<?php echo $feature[13] ?>" width="1em" height="1em"></i>
             </div>
             <h4 class="fw-semibold mb-0"><?php echo $feature[14] ?></h4>
             <p class="text-body-secondary"><?php echo $feature[15] ?></p>

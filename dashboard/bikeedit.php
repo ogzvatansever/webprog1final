@@ -133,7 +133,7 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
-          <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" aria-current="page" href="index.php">
               <span data-feather="home" class="align-text-bottom"></span>
               Anasayfa
@@ -158,15 +158,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="aedit.php">
               <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-              Reports
+              Anasayfa Verileri
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers" class="align-text-bottom"></span>
-              Integrations
+            <a class="nav-link" href="a2edit.php">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Hakkımızda
             </a>
           </li>
         </ul>
